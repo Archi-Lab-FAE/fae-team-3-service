@@ -56,14 +56,14 @@ node {
         }
     }
 
-    // TODO change Server to fae server.
+    // TODO Students: add docker compose files
     /* stage('Deploy') {
-         docker.withServer('tcp://10.10.10.51:', 'fae-prod-certs') {
+        docker.withServer('tcp://10.10.10.61:2376', 'fae-ws2019-certs') {
             docker.withRegistry('https://docker.nexus.archi-lab.io', 'archilab-nexus-jenkins') {
                 sh "env IMAGE=${image} TAG=${changelist} docker stack deploy --with-registry-auth \
                     -c src/main/docker/docker-compose.yml \
                     -c src/main/docker/docker-compose-prod.yml ${image}"
             }
         }
-    }*/
+    } */
 }
