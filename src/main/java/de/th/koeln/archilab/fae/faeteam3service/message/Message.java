@@ -1,8 +1,8 @@
-package de.th.koeln.archilab.fae.faeteam3service.answer;
+package de.th.koeln.archilab.fae.faeteam3service.message;
 
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
-import de.th.koeln.archilab.fae.faeteam3service.core.AbstractEntity;
 import de.th.koeln.archilab.fae.faeteam3service.core.TimestampW;
+import de.th.koeln.archilab.fae.faeteam3service.core.AbstractEntity;
 import lombok.*;
 
 import javax.persistence.Entity;
@@ -11,7 +11,7 @@ import javax.persistence.Entity;
 @Data
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @AllArgsConstructor
-public class Answer extends AbstractEntity {
+public class Message extends AbstractEntity {
 
     @Setter
     @JsonUnwrapped
@@ -19,9 +19,9 @@ public class Answer extends AbstractEntity {
 
     @Setter
     @JsonUnwrapped
-    private Type type;
+    private BetroffenerId betroffenerId;
 
     @Setter
     @JsonUnwrapped
-    private MessageId messageId;
+    private EmpfaengerId empfaengerId;
 }

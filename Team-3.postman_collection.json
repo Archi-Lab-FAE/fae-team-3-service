@@ -1,109 +1,221 @@
 {
 	"info": {
-		"_postman_id": "898a7d0e-9fc8-4b33-bc9f-f20b6884cf5d",
+		"_postman_id": "cb3fee12-7a0b-496d-9b46-dd32c02b7595",
 		"name": "Team-3",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "http://localhost:8080/team3/level-2/answers",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
+			"name": "answer",
+			"item": [
+				{
+					"name": "http://localhost:8080/team3/level-2/answers",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/team3/level-2/answers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"team3",
+								"level-2",
+								"answers"
+							]
+						}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:8080/team3/level-2/answers",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"team3",
-						"level-2",
-						"answers"
-					]
+				{
+					"name": "http://localhost:8080/team3/level-2/answers",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"timestampW\": \"2019-11-07T20:56:40.895+0000\",\r\n        \"type\": \"MegaType\",\r\n        \"messageId\": \"1\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/team3/level-2/answers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"team3",
+								"level-2",
+								"answers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/team3/level-2/answers",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/team3/level-2/answers/9e27b46a-398b-4954-b807-a243c3dccecd",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"team3",
+								"level-2",
+								"answers",
+								"9e27b46a-398b-4954-b807-a243c3dccecd"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
-			"name": "http://localhost:8080/team3/level-2/answers",
-			"request": {
-				"method": "DELETE",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
+			"name": "message",
+			"item": [
+				{
+					"name": "http://localhost:8080/team3/level-2/messages",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/team3/level-2/messages",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"team3",
+								"level-2",
+								"messages"
+							]
+						}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:8080/team3/level-2/answers/9e27b46a-398b-4954-b807-a243c3dccecd",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"team3",
-						"level-2",
-						"answers",
-						"9e27b46a-398b-4954-b807-a243c3dccecd"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "http://localhost:8080/team3/level-2/answers",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n        \"timestampW\": \"2019-11-07T20:56:40.895+0000\",\r\n        \"type\": \"MegaType\",\r\n        \"messageId\": \"1\"\r\n}"
+				{
+					"name": "http://localhost:8080/team3/level-2/messages",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"timestampW\": \"2019-11-07T20:56:40.895+0000\",\r\n    \"betroffenerId\": \"1\",\r\n    \"empfaengerId\": \"1\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/team3/level-2/messages",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"team3",
+								"level-2",
+								"messages"
+							]
+						}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:8080/team3/level-2/answers",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"team3",
-						"level-2",
-						"answers"
-					]
+				{
+					"name": "http://localhost:8080/team3/level-2/messages",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/team3/level-2/messages/ce109f8f-af61-49d8-80a5-f64b11305cd8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"team3",
+								"level-2",
+								"messages",
+								"ce109f8f-af61-49d8-80a5-f64b11305cd8"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			],
+			"protocolProfileBehavior": {}
 		}
 	],
 	"protocolProfileBehavior": {}
