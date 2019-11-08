@@ -19,9 +19,9 @@ public class Message extends AbstractEntity {
 
     @Setter
     @JsonUnwrapped
-    private BetroffenerId betroffenerId;
+    private AffectedId affectedId;
 
     @Setter
     @JsonUnwrapped
-    private EmpfaengerId empfaengerId;
+    private ReceiverId receiverId;
 }
