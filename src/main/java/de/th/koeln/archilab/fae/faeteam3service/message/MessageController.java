@@ -19,8 +19,8 @@ public class MessageController {
     }
 
     @PostMapping("/team3/level-2/messages")
-    public Message newMessage(@RequestBody Message newAnswer){
-        return this.messageRepository.save(newAnswer);
+    public Message newMessage(@RequestBody Message newMessage){
+        return this.messageRepository.save(newMessage);
     }
 
     @DeleteMapping("/team3/level-2/messages/{id}")
