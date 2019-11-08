@@ -14,6 +14,8 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class Message extends AbstractEntity {
 
+    //TODO not null checks
+
     @CreationTimestamp
     private LocalDateTime timestamp;
 

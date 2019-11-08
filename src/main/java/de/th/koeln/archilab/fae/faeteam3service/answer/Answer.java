@@ -14,6 +14,8 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class Answer extends AbstractEntity {
 
+    //TODO not null checks
+
     @CreationTimestamp
     private LocalDateTime timestamp;
 
@@ -21,6 +23,7 @@ public class Answer extends AbstractEntity {
     @JsonUnwrapped
     private Type type;
 
+    //add relation
     @Setter
     @JsonUnwrapped
     private MessageId messageId;

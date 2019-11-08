@@ -1,7 +1,6 @@
 package de.th.koeln.archilab.fae.faeteam3service.message;
 
 import org.springframework.web.bind.annotation.*;
-
 import java.util.UUID;
 
 @RestController
