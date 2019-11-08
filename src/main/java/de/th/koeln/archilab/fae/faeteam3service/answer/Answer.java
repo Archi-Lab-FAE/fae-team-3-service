@@ -2,10 +2,11 @@ package de.th.koeln.archilab.fae.faeteam3service.answer;
 
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import de.th.koeln.archilab.fae.faeteam3service.core.AbstractEntity;
-import de.th.koeln.archilab.fae.faeteam3service.core.TimestampW;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.Entity;
+import java.time.LocalDateTime;
 
 @Entity
 @Data
@@ -13,9 +14,8 @@ import javax.persistence.Entity;
 @AllArgsConstructor
 public class Answer extends AbstractEntity {
 
-    @Setter
-    @JsonUnwrapped
-    private TimestampW timestampW;
+    @CreationTimestamp
+    private LocalDateTime timestamp;
 
     @Setter
     @JsonUnwrapped
