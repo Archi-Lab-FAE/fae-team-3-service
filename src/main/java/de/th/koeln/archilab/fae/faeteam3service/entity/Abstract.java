@@ -2,6 +2,7 @@ package de.th.koeln.archilab.fae.faeteam3service.entity;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.ToString;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -11,6 +12,7 @@ import java.util.Date;
 import java.util.UUID;
 
 @EqualsAndHashCode
+@ToString
 @EntityListeners(AuditingEntityListener.class)
 @MappedSuperclass
 public class Abstract {

@@ -1,31 +1,39 @@
 package de.th.koeln.archilab.fae.faeteam3service.entity.message;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import de.th.koeln.archilab.fae.faeteam3service.entity.Abstract;
+import de.th.koeln.archilab.fae.faeteam3service.entity.answer.Answer;
 import de.th.koeln.archilab.fae.faeteam3service.entity.core.Emergency;
-import lombok.*;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Setter;
+import lombok.ToString;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 @Data
-@ToString(callSuper = true)
-@NoArgsConstructor(access = AccessLevel.PUBLIC)
 @AllArgsConstructor
+@ToString(callSuper = true)
 public class Message extends Abstract {
 
     @JsonUnwrapped
     private MessageText messageText;
 
+    @Setter
     @ManyToOne
-    @JoinColumn(name = "emergency_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
+    @JsonBackReference
+    @ToString.Exclude
     private Emergency emergency;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    private Answer answer;
+
+    public Message() {
+        this.messageText = new MessageText();
+    }
 }
