@@ -22,4 +22,9 @@ public class MessageController {
         log.info("Searching for messages from id: " + emergency_id);
         return messageRepository.findByEmergency_Id(emergency_id);
     }
+
+    @GetMapping("/emergency/messages")
+    public Iterable<Message> getAllMessages() {
+        return messageRepository.findAll();
+    }
 }
