@@ -1,19 +1,15 @@
 package de.th.koeln.archilab.fae.faeteam3service.controller;
 
 import de.th.koeln.archilab.fae.faeteam3service.entity.answer.Answer;
-import de.th.koeln.archilab.fae.faeteam3service.entity.message.Message;
 import de.th.koeln.archilab.fae.faeteam3service.repository.AnswerRepository;
 import de.th.koeln.archilab.fae.faeteam3service.repository.MessageRepository;
-import jdk.nashorn.internal.ir.IfNode;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Optional;
 import java.util.UUID;
 
 
@@ -27,8 +23,8 @@ public class AnswerController {
     @Autowired
     private MessageRepository messageRepository;
 
-    @PostMapping("/message/{message_id}/answer")
-    public Answer createEmergency(@PathVariable UUID message_id, @RequestBody Answer answer) {
+    @PostMapping("/messages/{message_id}/answer")
+    public Answer createAnswer(@PathVariable UUID message_id, @RequestBody Answer answer) {
         log.info("Trying to add answer: " + answer.toString());
 
         Answer answ = answerRepository.save(answer);
