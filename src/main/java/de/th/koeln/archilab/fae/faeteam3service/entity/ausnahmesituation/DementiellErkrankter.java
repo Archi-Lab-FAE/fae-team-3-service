@@ -1,4 +1,4 @@
-package de.th.koeln.archilab.fae.faeteam3service.entity.core;
+package de.th.koeln.archilab.fae.faeteam3service.entity.ausnahmesituation;
 
 import lombok.*;
 import lombok.extern.java.Log;
@@ -13,10 +13,10 @@ import javax.validation.constraints.NotNull;
 @Setter(AccessLevel.NONE)
 @ToString
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-class Affected {
+class DementiellErkrankter {
 
     @NotNull(message = "Should not be null!")
     @NotEmpty(message = "Should not be empty!")
-    private String affected;
+    private String dementiellErkrankterId;
 
 }
