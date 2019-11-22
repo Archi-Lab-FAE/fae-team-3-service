@@ -40,7 +40,7 @@ public class AusnahmesituationController {
         return ausnahmesituationRepository.findAll();
     }
 
-    @DeleteMapping("/level-2/Ausnahmesituation/{ausnahmesituationId}")
+    @DeleteMapping("/level-2/ausnahmesituation/{ausnahmesituationId}")
     public void deleteAusnahmesituation(@PathVariable String ausnahmesituationId) {
         log.info("Löschen der Ausnahmesituation mit ID: " + ausnahmesituationId);
         ausnahmesituationRepository.deleteById(ausnahmesituationId);
