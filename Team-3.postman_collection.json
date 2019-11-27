@@ -115,43 +115,6 @@
 			"name": "nachricht",
 			"item": [
 				{
-					"name": "/ausnahmesituation/{ausnahmesituationId}/nachrichten",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "http://localhost:8081/team3/level-2/ausnahmesituation/52fa8c56-7634-4b80-a307-a94781d2d996/nachrichten",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8081",
-							"path": [
-								"team3",
-								"level-2",
-								"ausnahmesituation",
-								"52fa8c56-7634-4b80-a307-a94781d2d996",
-								"nachrichten"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "/ausnahmesituation/nachrichten",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -185,6 +148,77 @@
 							]
 						},
 						"description": "Dieser Endpoint ist nur für Testzwecke"
+					},
+					"response": []
+				},
+				{
+					"name": "/ausnahmesituation/{ausnahmesituationId}/nachrichten",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8081/team3/level-2/ausnahmesituation/280fa3cc-a8d8-4f4d-935c-7289ffd41f48/nachrichten",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"team3",
+								"level-2",
+								"ausnahmesituation",
+								"280fa3cc-a8d8-4f4d-935c-7289ffd41f48",
+								"nachrichten"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/ausnahmesituation/{ausnahmesituationId}/nachrichten",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"text\" : \"Kannst du Maria abholen Hilde? Fritz hat leider keine Zeit.\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8081/team3/level-2/ausnahmesituation/280fa3cc-a8d8-4f4d-935c-7289ffd41f48/nachrichten",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"team3",
+								"level-2",
+								"ausnahmesituation",
+								"280fa3cc-a8d8-4f4d-935c-7289ffd41f48",
+								"nachrichten"
+							]
+						}
 					},
 					"response": []
 				}
