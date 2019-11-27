@@ -1,0 +1,39 @@
+# Spring
+spring:
+  application:
+    name: fae-team-3-service
+  profiles:
+    active: local
+  # Hibernate ddl auto
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+
+  # Spring Data Rest
+  data:
+    rest:
+      basePath: /fae-team-3-service
+      return-body-on-create: true
+      return-body-on-update: true
+      default-media-type: application/hal+json
+  # JSON Pretty Print
+  jackson:
+    serialization:
+      indent-output: true
+    deserialization:
+      accept-empty-array-as-null-object: true
+  kafka:
+    group-id: "fae-team-3-service"
+
+# Server
+server:
+  port: 8080
+  compression.enabled: true
+  compression.mime-types: application/json,application/xml,text/html,text/xml,text/plain
+# Kafka-topic
+product.topic: product

@@ -1,0 +1,9 @@
+version: "3.7"
+
+services:
+  springboot-service:
+    image: docker.nexus.archi-lab.io/archilab/fae-team-3-service
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+    ports:
+      - "8081:8080"
