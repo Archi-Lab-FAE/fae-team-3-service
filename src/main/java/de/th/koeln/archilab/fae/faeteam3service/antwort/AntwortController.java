@@ -1,8 +1,6 @@
-package de.th.koeln.archilab.fae.faeteam3service.controller;
+package de.th.koeln.archilab.fae.faeteam3service.antwort;
 
-import de.th.koeln.archilab.fae.faeteam3service.entity.antwort.Antwort;
-import de.th.koeln.archilab.fae.faeteam3service.repository.AntwortRepository;
-import de.th.koeln.archilab.fae.faeteam3service.repository.NachrichtRepository;
+import de.th.koeln.archilab.fae.faeteam3service.nachricht.NachrichtRepository;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;

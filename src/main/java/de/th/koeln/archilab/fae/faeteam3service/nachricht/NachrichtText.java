@@ -1,4 +1,4 @@
-package de.th.koeln.archilab.fae.faeteam3service.entity.nachricht;
+package de.th.koeln.archilab.fae.faeteam3service.nachricht;
 
 import lombok.Data;
 import lombok.ToString;

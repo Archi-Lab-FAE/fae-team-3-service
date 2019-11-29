@@ -1,9 +1,7 @@
-package de.th.koeln.archilab.fae.faeteam3service.controller;
+package de.th.koeln.archilab.fae.faeteam3service.ausnahmesituation;
 
-import de.th.koeln.archilab.fae.faeteam3service.entity.ausnahmesituation.Ausnahmesituation;
-import de.th.koeln.archilab.fae.faeteam3service.entity.nachricht.Nachricht;
-import de.th.koeln.archilab.fae.faeteam3service.repository.AusnahmesituationRepository;
-import de.th.koeln.archilab.fae.faeteam3service.repository.NachrichtRepository;
+import de.th.koeln.archilab.fae.faeteam3service.nachricht.Nachricht;
+import de.th.koeln.archilab.fae.faeteam3service.nachricht.NachrichtRepository;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

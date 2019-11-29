@@ -1,4 +1,4 @@
-package de.th.koeln.archilab.fae.faeteam3service.entity;
+package de.th.koeln.archilab.fae.faeteam3service.core;
 
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;

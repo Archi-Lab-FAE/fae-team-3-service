@@ -1,4 +1,4 @@
-package de.th.koeln.archilab.fae.faeteam3service.entity.antwort;
+package de.th.koeln.archilab.fae.faeteam3service.antwort;
 
 
 import lombok.Data;

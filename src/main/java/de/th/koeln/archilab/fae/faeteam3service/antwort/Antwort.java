@@ -1,7 +1,7 @@
-package de.th.koeln.archilab.fae.faeteam3service.entity.antwort;
+package de.th.koeln.archilab.fae.faeteam3service.antwort;
 
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
-import de.th.koeln.archilab.fae.faeteam3service.entity.AbstractEntity;
+import de.th.koeln.archilab.fae.faeteam3service.core.AbstractEntity;
 import lombok.*;
 
 import javax.persistence.Entity;

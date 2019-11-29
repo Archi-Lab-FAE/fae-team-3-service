@@ -1,9 +1,9 @@
-package de.th.koeln.archilab.fae.faeteam3service.entity.ausnahmesituation;
+package de.th.koeln.archilab.fae.faeteam3service.ausnahmesituation;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
-import de.th.koeln.archilab.fae.faeteam3service.entity.AbstractEntity;
-import de.th.koeln.archilab.fae.faeteam3service.entity.nachricht.Nachricht;
+import de.th.koeln.archilab.fae.faeteam3service.core.AbstractEntity;
+import de.th.koeln.archilab.fae.faeteam3service.nachricht.Nachricht;
 import lombok.*;
 
 import javax.persistence.*;

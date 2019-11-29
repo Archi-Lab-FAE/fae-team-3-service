@@ -1,9 +1,7 @@
-package de.th.koeln.archilab.fae.faeteam3service.repository;
+package de.th.koeln.archilab.fae.faeteam3service.nachricht;
 
-import de.th.koeln.archilab.fae.faeteam3service.entity.nachricht.Nachricht;
+import de.th.koeln.archilab.fae.faeteam3service.nachricht.Nachricht;
 import org.springframework.data.repository.CrudRepository;
-
-import java.util.UUID;
 
 public interface NachrichtRepository extends CrudRepository<Nachricht, String> {
 

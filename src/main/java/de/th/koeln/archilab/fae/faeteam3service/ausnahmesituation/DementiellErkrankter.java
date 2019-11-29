@@ -1,4 +1,4 @@
-package de.th.koeln.archilab.fae.faeteam3service.entity.ausnahmesituation;
+package de.th.koeln.archilab.fae.faeteam3service.ausnahmesituation;
 
 import lombok.*;
 import lombok.extern.java.Log;
