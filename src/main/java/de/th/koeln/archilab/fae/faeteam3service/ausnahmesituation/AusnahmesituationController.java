@@ -1,5 +1,6 @@
 package de.th.koeln.archilab.fae.faeteam3service.ausnahmesituation;
 
+import de.th.koeln.archilab.fae.faeteam3service.ausnahmesituation.services.EmailService;
 import de.th.koeln.archilab.fae.faeteam3service.nachricht.Nachricht;
 import de.th.koeln.archilab.fae.faeteam3service.nachricht.NachrichtRepository;
 import io.swagger.v3.oas.annotations.Operation;
@@ -22,6 +23,8 @@ public class AusnahmesituationController {
     @Autowired
     private NachrichtRepository nachrichtRepository;
 
+    @Autowired
+    private EmailService emailService;
 
     @Operation(summary = "Ausnahmesituation erstellen", description = "", tags = { "ausnahmesituation" })
     @PostMapping(value = "/level-2/ausnahmesituation", consumes = {"application/json"}, produces = {"application/json"})
@@ -33,13 +36,15 @@ public class AusnahmesituationController {
         ausnahmesituation.addNachricht(neueNachricht);
 
         nachrichtRepository.save(neueNachricht);
-
         log.info("Ausnahmesituation erstellt: " + ausnahmesituation.toString());
+
+        emailService.sendMessage("t.alessandro@web.de", neueNachricht);
+
         return ausnahmesituation;
     }
 
-    @Operation(summary = "Alle Ausnahmesituationen abfragen", description = "", tags = { "ausnahmesituation" })
-    @GetMapping(value = "/level-2/ausnahmesituation", produces = {"application/json"})
+
+    @GetMapping("/level-2/ausnahmesituation")
     public Iterable<Ausnahmesituation> getAllAusnahmesituationen() {
         log.info("Hole alle Ausnahmesituationen...");
         return ausnahmesituationRepository.findAll();
