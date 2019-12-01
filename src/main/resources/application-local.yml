@@ -1,12 +1,12 @@
 server:
   port: 8081
-#spring:
-#  # Kafka
-#  kafka:
-#    bootstrap-servers: localhost:9090
-## Eureka
-#eureka:
-#  client:
-#    serviceUrl:
-#      defaultZone: http://localhost:8761/eureka/
-#    enabled: true
+spring:
+  # Kafka
+  kafka:
+    bootstrap-servers: localhost:9090
+# Eureka
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    enabled: true

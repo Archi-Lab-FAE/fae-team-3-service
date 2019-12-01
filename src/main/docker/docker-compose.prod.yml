@@ -9,7 +9,7 @@ services:
         max_attempts: 3
         window: 120s
   springboot-service:
-    image: de.th.koeln.archilab.fae.faeteam3service.FaeTeam3ServiceApplication:${TAG}
+    image: docker.nexus.archi-lab.io/archilab/fae-team-3-service:${TAG}
     deploy:
       replicas: 2
       update_config:

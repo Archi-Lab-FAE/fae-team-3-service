@@ -1,7 +1,35 @@
 version: "3.7"
 
 services:
+  postgres:
+    image: postgres:10.1
+    volumes:
+      - nachrichtensystem_db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=_FAE_DeMO_MS_2019
+      - POSTGRES_USER=nachrichtensystem
+      - POSTGRES_DB=nachrichtensystem
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    networks:
+      - service_internal
   springboot-service:
     image: docker.nexus.archi-lab.io/archilab/fae-team-3-service
     environment:
       - TZ=Europe/Berlin
+      - NACHRICHTENSYSTEM_DB=postgres
+      - NACHRICHTENSYSTEM_DB_NAME=nachrichtensystem
+      - NACHRICHTENSYSTEM_DB_USER=nachrichtensystem
+      - NACHRICHTENSYSTEM_DB_PW=_FAE_DeMO_MS_2019
+    depends_on:
+      - postgres
+    networks:
+      - service_internal
+      - fae_backend
+
+volumes:
+  nachrichtensystem_db: {}
+
+networks:
+  service_internal:
+  fae_backend:
+    external: true
