@@ -13,7 +13,7 @@ class NachrichtText {
     private String text;
 
     NachrichtText() {
-        this.text = "Das ist ein Test!";
+        this.text = "Kannst du helfen?";
     }
 
 }
