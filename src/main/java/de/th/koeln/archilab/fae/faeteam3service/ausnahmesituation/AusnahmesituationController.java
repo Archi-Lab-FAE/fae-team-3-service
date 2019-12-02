@@ -43,7 +43,6 @@ public class AusnahmesituationController {
         return ausnahmesituation;
     }
 
-
     @GetMapping("/level-2/ausnahmesituation")
     public Iterable<Ausnahmesituation> getAllAusnahmesituationen() {
         log.info("Hole alle Ausnahmesituationen...");

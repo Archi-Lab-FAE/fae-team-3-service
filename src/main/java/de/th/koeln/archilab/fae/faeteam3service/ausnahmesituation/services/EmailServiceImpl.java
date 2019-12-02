@@ -1,5 +1,9 @@
 package de.th.koeln.archilab.fae.faeteam3service.ausnahmesituation.services;
 
+<<<<<<< HEAD
+=======
+import de.th.koeln.archilab.fae.faeteam3service.ausnahmesituation.services.EmailService;
+>>>>>>> Cleanup des AusnahmesituationController
 import de.th.koeln.archilab.fae.faeteam3service.nachricht.Nachricht;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,5 +44,5 @@ public class EmailServiceImpl implements EmailService {
                 "Klicke auf den folgenden Link um uns mitzuteilen, ob du Maria helfen kannst: ",
                 "https://fae.aletutto.de/?nachricht=" + nachricht.getNachrichtId());
     }
-
 }
+
