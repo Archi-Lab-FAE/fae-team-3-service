@@ -2,6 +2,8 @@ package de.th.koeln.archilab.fae.faeteam3service.nachricht;
 
 import de.th.koeln.archilab.fae.faeteam3service.ausnahmesituation.Ausnahmesituation;
 import de.th.koeln.archilab.fae.faeteam3service.ausnahmesituation.AusnahmesituationRepository;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -10,6 +12,7 @@ import javax.validation.Valid;
 import java.util.Optional;
 
 @Log
+@Tag(name = "Nachricht", description = "Nachricht API")
 @RestController
 public class NachrichtController {
 
@@ -25,13 +28,15 @@ public class NachrichtController {
         return nachrichtRepository.findAll();
     }
 
-    @GetMapping("/level-2/ausnahmesituation/{ausnahmesituationId}/nachrichten")
+    @Operation(summary = "Alle Nachrichten einer Ausnahmesituationen abfragen", description = "", tags = { "Nachricht" })
+    @GetMapping(value = "/level-2/ausnahmesituation/{ausnahmesituationId}/nachrichten", produces = {"application/json"})
     public Iterable<Nachricht> getAllNachrichtenByAusnahmesituation(@PathVariable String ausnahmesituationId) {
         log.info("Suche Nachrichten mit der Ausnahmesituation ID: " + ausnahmesituationId);
         return nachrichtRepository.findByAusnahmesituation_aunamesituationId(ausnahmesituationId);
     }
 
-    @PostMapping("/level-2/ausnahmesituation/{ausnahmesituationId}/nachrichten")
+    @Operation(summary = "Nachricht für eine Ausnahmesituation erstellen", description = "", tags = { "Nachricht" })
+    @PostMapping(value = "/level-2/ausnahmesituation/{ausnahmesituationId}/nachrichten", consumes = {"application/json"}, produces = {"application/json"})
     public Nachricht addNachrichtToAusnahmesituation(@PathVariable String ausnahmesituationId, @Valid @RequestBody Nachricht nachricht) {
         Optional<Ausnahmesituation> ausnahmesituation = ausnahmesituationRepository.findById(ausnahmesituationId);
 
