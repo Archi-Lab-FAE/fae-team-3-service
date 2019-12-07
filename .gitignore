@@ -29,3 +29,7 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### TMP ###
+/src/main/docker/zk-single-kafka-single/
+
