@@ -27,7 +27,7 @@ public class AusnahmesituationController {
     private EmailService emailService;
 
     @Operation(summary = "Ausnahmesituation erstellen", description = "", tags = { "ausnahmesituation" })
-    @PostMapping(value = "/level-2/ausnahmesituation", consumes = {"application/json"}, produces = {"application/json"})
+    @PostMapping(value = "/ausnahmesituation", consumes = {"application/json"}, produces = {"application/json"})
     public Ausnahmesituation createAusnahmesituation(@Valid @RequestBody Ausnahmesituation ausnahmesituation) {
 
         ausnahmesituation = ausnahmesituationRepository.save(ausnahmesituation);
@@ -43,14 +43,14 @@ public class AusnahmesituationController {
         return ausnahmesituation;
     }
 
-    @GetMapping("/level-2/ausnahmesituation")
+    @GetMapping("/ausnahmesituation")
     public Iterable<Ausnahmesituation> getAllAusnahmesituationen() {
         log.info("Hole alle Ausnahmesituationen...");
         return ausnahmesituationRepository.findAll();
     }
 
     @Operation(summary = "Löschen einer Ausnahmesituationen", description = "", tags = { "ausnahmesituation" })
-    @DeleteMapping("/level-2/ausnahmesituation/{ausnahmesituationId}")
+    @DeleteMapping("/ausnahmesituation/{ausnahmesituationId}")
     public void deleteAusnahmesituation(@PathVariable String ausnahmesituationId) {
         log.info("Löschen der Ausnahmesituation mit ID: " + ausnahmesituationId);
         ausnahmesituationRepository.deleteById(ausnahmesituationId);

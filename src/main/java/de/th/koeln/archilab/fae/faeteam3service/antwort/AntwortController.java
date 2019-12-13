@@ -24,7 +24,7 @@ public class AntwortController {
 
     @CrossOrigin(origins = "https://fae.aletutto.de")
     @Operation(summary = "Antwort für eine Nachricht erstellen", description = "", tags = { "Antwort" })
-    @PostMapping(value = "/level-2/nachricht/{nachrichtId}/antwort", consumes = {"application/json"})
+    @PostMapping(value = "/nachricht/{nachrichtId}/antwort", consumes = {"application/json"})
     public Antwort createAntwort(@PathVariable String nachrichtId, @RequestBody Antwort antwort) {
         log.info("Erstelle Antwort: " + antwort.toString());
 

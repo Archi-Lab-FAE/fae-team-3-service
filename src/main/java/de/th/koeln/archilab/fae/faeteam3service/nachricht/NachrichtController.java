@@ -23,20 +23,20 @@ public class NachrichtController {
     private AusnahmesituationRepository ausnahmesituationRepository;
 
     // TODO: Nur für Testzwecke, löschen wenn nich mehr benötigt
-    @GetMapping("/level-2/ausnahmesituation/nachrichten")
+    @GetMapping("/ausnahmesituation/nachrichten")
     public Iterable<Nachricht> getAllNachrichten() {
         return nachrichtRepository.findAll();
     }
 
     @Operation(summary = "Alle Nachrichten einer Ausnahmesituationen abfragen", description = "", tags = { "Nachricht" })
-    @GetMapping(value = "/level-2/ausnahmesituation/{ausnahmesituationId}/nachrichten", produces = {"application/json"})
+    @GetMapping(value = "/ausnahmesituation/{ausnahmesituationId}/nachrichten", produces = {"application/json"})
     public Iterable<Nachricht> getAllNachrichtenByAusnahmesituation(@PathVariable String ausnahmesituationId) {
         log.info("Suche Nachrichten mit der Ausnahmesituation ID: " + ausnahmesituationId);
         return nachrichtRepository.findByAusnahmesituation_aunamesituationId(ausnahmesituationId);
     }
 
     @Operation(summary = "Nachricht für eine Ausnahmesituation erstellen", description = "", tags = { "Nachricht" })
-    @PostMapping(value = "/level-2/ausnahmesituation/{ausnahmesituationId}/nachrichten", consumes = {"application/json"}, produces = {"application/json"})
+    @PostMapping(value = "/ausnahmesituation/{ausnahmesituationId}/nachrichten", consumes = {"application/json"}, produces = {"application/json"})
     public Nachricht addNachrichtToAusnahmesituation(@PathVariable String ausnahmesituationId, @Valid @RequestBody Nachricht nachricht) {
         Optional<Ausnahmesituation> ausnahmesituation = ausnahmesituationRepository.findById(ausnahmesituationId);
 

@@ -14,13 +14,6 @@ spring:
           lob:
             non_contextual_creation: true
 
-  # Spring Data Rest
-  data:
-    rest:
-      basePath: /fae-team-3-service
-      return-body-on-create: true
-      return-body-on-update: true
-      default-media-type: application/hal+json
   # JSON Pretty Print
   jackson:
     serialization:
