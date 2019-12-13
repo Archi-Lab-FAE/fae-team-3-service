@@ -19,7 +19,7 @@ public class OpenApiConfig {
             .components(new Components())
             .info(new Info().title("Nachrichtensystem API").description(
                 "OpenAPI 3 Dokumentation des Nachrichtensystems "
-            ));
+            ).version("1"));
     }
 
 }
