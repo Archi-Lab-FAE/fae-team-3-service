@@ -23,3 +23,9 @@ services:
         window: 120s
     environment:
       - SPRING_PROFILES_ACTIVE=prod
+    networks:
+      - fae_backend
+
+networks:
+  fae_backend:
+    external: true
