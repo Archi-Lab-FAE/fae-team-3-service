@@ -1,10 +1,11 @@
 package de.th.koeln.archilab.fae.faeteam3service.ausnahmesituation;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import de.th.koeln.archilab.fae.faeteam3service.ausnahmesituation.services.EmailService;
+import de.th.koeln.archilab.fae.faeteam3service.externes.ausnahmesituation.Producer;
 import de.th.koeln.archilab.fae.faeteam3service.nachricht.Nachricht;
 import de.th.koeln.archilab.fae.faeteam3service.nachricht.NachrichtRepository;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,9 +27,12 @@ public class AusnahmesituationController {
     @Autowired
     private EmailService emailService;
 
+    @Autowired
+    private Producer producer;
+
     @Operation(summary = "Ausnahmesituation erstellen", description = "", tags = { "ausnahmesituation" })
     @PostMapping(value = "/ausnahmesituation", consumes = {"application/json"}, produces = {"application/json"})
-    public Ausnahmesituation createAusnahmesituation(@Valid @RequestBody Ausnahmesituation ausnahmesituation) {
+    public Ausnahmesituation createAusnahmesituation(@Valid @RequestBody Ausnahmesituation ausnahmesituation) throws JsonProcessingException {
 
         ausnahmesituation = ausnahmesituationRepository.save(ausnahmesituation);
 
@@ -40,6 +44,7 @@ public class AusnahmesituationController {
 
         emailService.sendMessage("t.alessandro@web.de", neueNachricht);
 
+        producer.publishErstellt(ausnahmesituation);
         return ausnahmesituation;
     }
 
