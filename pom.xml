@@ -12,7 +12,7 @@
 
   <groupId>de.th.koeln.archilab.fae</groupId>
   <artifactId>fae-team-3-service</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>${revision}${changelist}</version>
 
   <name>fae-team-3-service</name>
   <description>Microservice Project for Team 3 FAE 2019/20</description>
