@@ -28,5 +28,7 @@ server:
   port: 8080
   compression.enabled: true
   compression.mime-types: application/json,application/xml,text/html,text/xml,text/plain
+  servlet:
+    context-path: /team-3
 # Kafka-topic
 product.topic: product
