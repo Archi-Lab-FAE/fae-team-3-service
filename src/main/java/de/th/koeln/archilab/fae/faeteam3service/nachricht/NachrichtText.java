@@ -1,19 +1,23 @@
 package de.th.koeln.archilab.fae.faeteam3service.nachricht;
 
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.Embeddable;
+import lombok.extern.java.Log;
 
+
+@Log
 @Embeddable
-@ToString
 @Data
+@Setter(AccessLevel.NONE)
+@ToString
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class NachrichtText {
 
     private String text;
-
-    NachrichtText() {
-        this.text = "Kannst du helfen?";
-    }
 
 }

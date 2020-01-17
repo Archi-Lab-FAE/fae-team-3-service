@@ -31,7 +31,6 @@ public class Ausnahmesituation extends AbstractEntity {
     @JsonUnwrapped
     private NachrichtText nachrichtText;
 
-
     @OneToMany(mappedBy = "ausnahmesituation",
             cascade = CascadeType.ALL,
             fetch = FetchType.EAGER)
