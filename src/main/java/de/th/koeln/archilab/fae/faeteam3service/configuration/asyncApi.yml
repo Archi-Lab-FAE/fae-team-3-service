@@ -1,0 +1,77 @@
+asyncapi: 2.0.0
+info:
+  title: Zonenalarmsystem - Eventing
+  version: '0.0.1'
+  description: |
+    Dies ist die Event-Dokumenation für das Zonenalarmsystem. Weitere Erläuterungen zum Projekt können dem [Domain Vision Statement](https://github.com/Archi-Lab-FAE/fae-team-2-documentation).
+
+defaultContentType: application/json
+
+channels:
+
+
+#### PUBLISH ####
+
+  team-3/ausnahmesituation:
+    publish:
+      operationId: ausnahmesituation
+      message:
+        $ref: '#/components/messages/ausnahmesituation'
+
+
+components:
+  messages:        
+    ausnahmesituation:
+      name: Ausnahmesituation
+      title: Änderung an Ausnahmesituationen
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/commonHeaders'
+      payload:
+        $ref: "#/components/schemas/ausnahmesituationPayload"
+
+  schemas:
+    ausnahmesituationPayload:
+      type: object
+      properties:
+        ausnahmesituationId:
+          type: string
+          format: uuid-as-string
+          example: 'f33c6cd8-1697-11ea-8d71-362b9e155667'
+        trackerId:
+          type: string
+          format: uuid-as-string
+          example: 'f33c6cd8-1697-11ea-8d71-362b9e155667'
+        text:
+          type: string
+          example: 'Alarmknopf Herbert wurde gedrückt.'
+
+  messageTraits:
+    commonHeaders:
+      headers:
+        type: object
+        properties:
+          id:
+            type: string
+            format: uuid-as-string
+            example: '65cf7091-e3ac-48e7-8553-c329490aae5c'
+          key:
+            type: string
+            format: entity-uuid
+            example: '65cf7091-e3ac-48e7-8553-c329490aae5c'
+          version:
+            type: integer
+            example: 42
+          timestamp:
+            type: string
+            format: java.utils.Instant-date
+            example: '2019-09-13T23:30:52.123Z'
+          type:
+            type: string
+            example: 'ausnahmesituation-passiert'
+
+  operationTraits:
+    kafka:
+      bindings:
+        kafka:
+          clientId: fae-team-2-service
