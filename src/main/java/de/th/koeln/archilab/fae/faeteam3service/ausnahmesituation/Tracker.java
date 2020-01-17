@@ -13,10 +13,10 @@ import javax.validation.constraints.NotNull;
 @Setter(AccessLevel.NONE)
 @ToString
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-class DementiellErkrankter {
+class Tracker {
 
     @NotNull(message = "Should not be null!")
     @NotEmpty(message = "Should not be empty!")
-    private String dementiellErkrankterId;
+    private String trackerId;
 
 }

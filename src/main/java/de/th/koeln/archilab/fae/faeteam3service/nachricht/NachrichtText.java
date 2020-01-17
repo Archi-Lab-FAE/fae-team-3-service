@@ -8,7 +8,7 @@ import javax.persistence.Embeddable;
 @Embeddable
 @ToString
 @Data
-class NachrichtText {
+public class NachrichtText {
 
     private String text;
 

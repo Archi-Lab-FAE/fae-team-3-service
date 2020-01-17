@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import de.th.koeln.archilab.fae.faeteam3service.core.AbstractEntity;
 import de.th.koeln.archilab.fae.faeteam3service.nachricht.Nachricht;
+import de.th.koeln.archilab.fae.faeteam3service.nachricht.NachrichtText;
 import lombok.*;
 
 import javax.persistence.*;
@@ -24,7 +25,12 @@ public class Ausnahmesituation extends AbstractEntity {
     @Valid
     @Setter
     @JsonUnwrapped
-    private DementiellErkrankter dementiellErkrankter;
+    private Tracker tracker;
+
+    @Getter
+    @JsonUnwrapped
+    private NachrichtText nachrichtText;
+
 
     @OneToMany(mappedBy = "ausnahmesituation",
             cascade = CascadeType.ALL,
@@ -41,5 +47,9 @@ public class Ausnahmesituation extends AbstractEntity {
 
     public Ausnahmesituation() {
         this.aunamesituationId = UUID.randomUUID().toString();
+    }
+
+    public NachrichtText getNachrichtText() {
+        return nachrichtText;
     }
 }

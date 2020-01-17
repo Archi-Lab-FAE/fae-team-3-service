@@ -36,4 +36,9 @@ public class Nachricht extends AbstractEntity {
         this.nachrichtText = new NachrichtText();
         this.nachrichtId = UUID.randomUUID().toString();
     }
+
+    public Nachricht(NachrichtText nachrichtenText) {
+        this.nachrichtText = nachrichtenText;
+        this.nachrichtId = UUID.randomUUID().toString();
+    }
 }

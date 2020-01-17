@@ -36,7 +36,7 @@ public class AusnahmesituationController {
 
         ausnahmesituation = ausnahmesituationRepository.save(ausnahmesituation);
 
-        Nachricht neueNachricht = nachrichtRepository.save(new Nachricht());
+        Nachricht neueNachricht = nachrichtRepository.save(new Nachricht(ausnahmesituation.getNachrichtText()));
         ausnahmesituation.addNachricht(neueNachricht);
 
         nachrichtRepository.save(neueNachricht);
