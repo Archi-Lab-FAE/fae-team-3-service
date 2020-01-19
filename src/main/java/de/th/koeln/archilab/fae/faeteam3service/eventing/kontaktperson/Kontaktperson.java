@@ -1,12 +1,12 @@
 package de.th.koeln.archilab.fae.faeteam3service.eventing.kontaktperson;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-
+import java.util.UUID;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.util.UUID;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
 @Data
 @AllArgsConstructor
@@ -14,14 +14,14 @@ import java.util.UUID;
 @Table(name = "kontaktPersonen")
 public class Kontaktperson {
 
-    @Id
-    private String id;
-    private String name;
-    private String vorname;
-    private String telefonnummer;
-    private Boolean aktiv;
+  @Id
+  private String id;
+  private String name;
+  private String vorname;
+  private String telefonnummer;
+  private Boolean aktiv;
 
-    public Kontaktperson() {
-        this.id = UUID.randomUUID().toString();
-    }
+  public Kontaktperson() {
+    this.id = UUID.randomUUID().toString();
+  }
 }

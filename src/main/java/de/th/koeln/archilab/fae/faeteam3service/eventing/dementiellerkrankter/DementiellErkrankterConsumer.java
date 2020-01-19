@@ -1,4 +1,4 @@
-package de.th.koeln.archilab.fae.faeteam3service.eventing.positionssender;
+package de.th.koeln.archilab.fae.faeteam3service.eventing.dementiellerkrankter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -9,19 +9,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
+
 @Log
 @Service
-public class PositionssenderConsumer {
+public class DementiellErkrankterConsumer {
 
   @Autowired
-  private PositionssenderRepository positionsRepository;
+  private DemenziellErkrankterRepository demenziellErkrankterRepository;
 
-  @KafkaListener(topics = "positionssender", groupId = "fae-team-3-service")
+  @KafkaListener(topics = "dementiellErkrankter", groupId = "fae-team-3-service")
   public void consume(String input) throws IOException {
     log.info(String.format("#### -> Consumed message -> %s", input));
 
     ObjectMapper mapper = new ObjectMapper();
-    Positionssender positionssender = mapper.readValue(input, Positionssender.class);
-    positionsRepository.save(positionssender);
+    DemenziellErkrankter demenziellErkrankter = mapper.readValue(input, DemenziellErkrankter.class);
+    demenziellErkrankterRepository.save(demenziellErkrankter);
   }
 }

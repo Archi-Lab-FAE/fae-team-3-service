@@ -7,12 +7,22 @@ import de.th.koeln.archilab.fae.faeteam3service.core.AbstractEntity;
 import de.th.koeln.archilab.fae.faeteam3service.eventing.EventPublishingEntityListener;
 import de.th.koeln.archilab.fae.faeteam3service.nachricht.Nachricht;
 import de.th.koeln.archilab.fae.faeteam3service.nachricht.NachrichtText;
-import lombok.*;
 
-import javax.persistence.*;
-import javax.validation.Valid;
 import java.util.HashSet;
 import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+import javax.validation.Valid;
+
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @EntityListeners(EventPublishingEntityListener.class)
@@ -21,39 +31,39 @@ import java.util.Set;
 @ToString(callSuper = true)
 public class Ausnahmesituation extends AbstractEntity {
 
-    @Valid
-    @Setter
-    @JsonUnwrapped
-    private Tracker tracker;
+  @Valid
+  @Setter
+  @JsonUnwrapped
+  private Tracker tracker;
 
-    @Getter
-    @JsonUnwrapped
-    private NachrichtText nachrichtText;
+  @Getter
+  @JsonUnwrapped
+  private NachrichtText nachrichtText;
 
-    @OneToMany(mappedBy = "ausnahmesituation",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER)
-    @JsonManagedReference
-    private Set<Nachricht> nachrichten = new HashSet<Nachricht>();
+  @OneToMany(mappedBy = "ausnahmesituation",
+      cascade = CascadeType.ALL,
+      fetch = FetchType.EAGER)
+  @JsonManagedReference
+  private Set<Nachricht> nachrichten = new HashSet<>();
 
-    NachrichtText getNachrichtText() {
-        return nachrichtText;
+  NachrichtText getNachrichtText() {
+    return nachrichtText;
+  }
+
+  @Setter
+  private Boolean istAbgeschlossen = false;
+
+  public void addNachricht(Nachricht nachricht) {
+    if (!nachrichten.contains(nachricht)) {
+      this.nachrichten.add(nachricht);
+      nachricht.setAusnahmesituation(this);
     }
+  }
 
-    @Setter
-    private Boolean istAbgeschlossen = false;
-
-    public void addNachricht(Nachricht nachricht) {
-        if (!nachrichten.contains(nachricht)) {
-            this.nachrichten.add(nachricht);
-            nachricht.setAusnahmesituation(this);
-        }
-    }
-
-    @Override
-    @JsonProperty("ausnamesituationId")
-    public String getEntityId() {
-        return super.getEntityId();
-    }
+  @Override
+  @JsonProperty("ausnamesituationId")
+  public String getEntityId() {
+    return super.getEntityId();
+  }
 }
 

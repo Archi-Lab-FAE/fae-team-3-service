@@ -1,12 +1,12 @@
 package de.th.koeln.archilab.fae.faeteam3service.nachricht;
 
+import javax.persistence.Embeddable;
+
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-
-import javax.persistence.Embeddable;
 import lombok.extern.java.Log;
 
 
@@ -17,7 +17,5 @@ import lombok.extern.java.Log;
 @ToString
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class NachrichtText {
-
-    private String text;
-
+  private String text;
 }
