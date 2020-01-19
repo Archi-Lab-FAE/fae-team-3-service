@@ -1,7 +1,6 @@
 package de.th.koeln.archilab.fae.faeteam3service.ausnahmesituation;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import de.th.koeln.archilab.fae.faeteam3service.ausnahmesituation.services.EmailService;
 import de.th.koeln.archilab.fae.faeteam3service.eventing.ausnahmesituation.Producer;
 import de.th.koeln.archilab.fae.faeteam3service.nachricht.Nachricht;
 import de.th.koeln.archilab.fae.faeteam3service.nachricht.NachrichtRepository;
@@ -25,9 +24,6 @@ public class AusnahmesituationController {
     private NachrichtRepository nachrichtRepository;
 
     @Autowired
-    private EmailService emailService;
-
-    @Autowired
     private Producer producer;
 
     @Operation(summary = "Ausnahmesituation erstellen", description = "", tags = { "ausnahmesituation" })
@@ -41,8 +37,6 @@ public class AusnahmesituationController {
 
         nachrichtRepository.save(neueNachricht);
         log.info("Ausnahmesituation erstellt: " + ausnahmesituation.toString());
-
-        emailService.sendMessage("t.alessandro@web.de", neueNachricht);
 
         producer.publishErstellt(ausnahmesituation);
         return ausnahmesituation;

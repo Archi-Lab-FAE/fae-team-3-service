@@ -32,7 +32,7 @@ public class NachrichtController {
     @GetMapping(value = "/ausnahmesituation/{ausnahmesituationId}/nachrichten", produces = {"application/json"})
     public Iterable<Nachricht> getAllNachrichtenByAusnahmesituation(@PathVariable String ausnahmesituationId) {
         log.info("Suche Nachrichten mit der Ausnahmesituation ID: " + ausnahmesituationId);
-        return nachrichtRepository.findByAusnahmesituation_aunamesituationId(ausnahmesituationId);
+        return nachrichtRepository.findByAusnahmesituation_entityId(ausnahmesituationId);
     }
 
     @Operation(summary = "Nachricht für eine Ausnahmesituation erstellen", description = "", tags = { "Nachricht" })
