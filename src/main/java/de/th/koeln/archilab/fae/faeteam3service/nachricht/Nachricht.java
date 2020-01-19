@@ -43,7 +43,7 @@ public class Nachricht extends AbstractEntity {
     }
 
     @Override
-    @JsonProperty("antwortId")
+    @JsonProperty("nachrichtId")
     public String getEntityId() {
         return super.getEntityId();
     }

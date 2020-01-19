@@ -37,6 +37,9 @@ public class Ausnahmesituation extends AbstractEntity {
     @JsonManagedReference
     private Set<Nachricht> nachrichten = new HashSet<Nachricht>();
 
+    @Setter
+    private Boolean istAbgeschlossen = false;
+
     NachrichtText getNachrichtText() {
         return nachrichtText;
     }

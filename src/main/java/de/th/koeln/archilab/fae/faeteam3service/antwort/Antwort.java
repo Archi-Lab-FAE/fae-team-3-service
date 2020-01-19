@@ -3,26 +3,22 @@ package de.th.koeln.archilab.fae.faeteam3service.antwort;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import de.th.koeln.archilab.fae.faeteam3service.core.AbstractEntity;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
 @Entity
 @Data
 @ToString(callSuper = true)
 @AllArgsConstructor
+@NoArgsConstructor
 public class Antwort extends AbstractEntity {
 
     @Setter
-    @JsonUnwrapped
+    @Enumerated(EnumType.STRING)
     private AntwortTyp antwortTyp;
-
-    public Antwort() {
-        this.antwortTyp = new AntwortTyp();
-    }
 
     @Override
     @JsonProperty("antwortId")
