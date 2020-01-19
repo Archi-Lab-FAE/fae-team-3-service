@@ -38,7 +38,7 @@ public class EmailServiceImpl implements EmailService {
                 "Maria benötgt gerade deine Hilfe!",
                 "",
                 "Klicke auf den folgenden Link um uns mitzuteilen, ob du Maria helfen kannst: ",
-                "https://fae.aletutto.de/?nachricht=" + nachricht.getNachrichtId());
+                "https://fae.aletutto.de/?nachricht=" + nachricht.getEntityId());
     }
 }
 
