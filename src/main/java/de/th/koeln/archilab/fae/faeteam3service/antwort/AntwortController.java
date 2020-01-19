@@ -6,7 +6,6 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,7 +25,6 @@ public class AntwortController {
     @Autowired
     private AusnahmesituationRepository ausnahmesituationRepository;
 
-    @CrossOrigin(origins = "https://fae.aletutto.de")
     @Operation(summary = "Antwort für eine Nachricht erstellen", description = "", tags = { "Antwort" })
     @PostMapping(value = "/nachricht/{nachrichtId}/antwort", consumes = {"application/json"})
     public Antwort createAntwort(@PathVariable String nachrichtId, @RequestBody Antwort antwort) {

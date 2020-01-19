@@ -4,19 +4,18 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import de.th.koeln.archilab.fae.faeteam3service.core.AbstractEntity;
+import de.th.koeln.archilab.fae.faeteam3service.eventing.EventPublishingEntityListener;
 import de.th.koeln.archilab.fae.faeteam3service.nachricht.Nachricht;
 import de.th.koeln.archilab.fae.faeteam3service.nachricht.NachrichtText;
 import lombok.*;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import javax.validation.Valid;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@EntityListeners(EventPublishingEntityListener.class)
 @Getter
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @ToString(callSuper = true)
@@ -37,12 +36,12 @@ public class Ausnahmesituation extends AbstractEntity {
     @JsonManagedReference
     private Set<Nachricht> nachrichten = new HashSet<Nachricht>();
 
-    @Setter
-    private Boolean istAbgeschlossen = false;
-
     NachrichtText getNachrichtText() {
         return nachrichtText;
     }
+
+    @Setter
+    private Boolean istAbgeschlossen = false;
 
     public void addNachricht(Nachricht nachricht) {
         if (!nachrichten.contains(nachricht)) {
@@ -57,3 +56,4 @@ public class Ausnahmesituation extends AbstractEntity {
         return super.getEntityId();
     }
 }
+
