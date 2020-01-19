@@ -1,4 +1,4 @@
-package de.th.koeln.archilab.fae.faeteam3service.externes.kontaktperson;
+package de.th.koeln.archilab.fae.faeteam3service.eventing.positionssender;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -6,22 +6,20 @@ import lombok.Data;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.Date;
 import java.util.UUID;
 
 @Data
 @AllArgsConstructor
 @Entity
-@Table(name = "kontaktPersonen")
-public class Kontaktperson {
+@Table(name = "Positionen")
+public class Positionssender {
 
     @Id
     private String id;
-    private String name;
-    private String vorname;
-    private String telefonnummer;
-    private Boolean aktiv;
+    private Date letzteWartung;
 
-    public Kontaktperson() {
+    public Positionssender() {
         this.id = UUID.randomUUID().toString();
     }
 }

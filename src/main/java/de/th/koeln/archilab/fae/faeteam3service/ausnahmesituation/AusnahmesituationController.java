@@ -2,7 +2,7 @@ package de.th.koeln.archilab.fae.faeteam3service.ausnahmesituation;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import de.th.koeln.archilab.fae.faeteam3service.ausnahmesituation.services.EmailService;
-import de.th.koeln.archilab.fae.faeteam3service.externes.ausnahmesituation.Producer;
+import de.th.koeln.archilab.fae.faeteam3service.eventing.ausnahmesituation.Producer;
 import de.th.koeln.archilab.fae.faeteam3service.nachricht.Nachricht;
 import de.th.koeln.archilab.fae.faeteam3service.nachricht.NachrichtRepository;
 import io.swagger.v3.oas.annotations.Operation;

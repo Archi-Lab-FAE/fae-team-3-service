@@ -1,4 +1,4 @@
-package de.th.koeln.archilab.fae.faeteam3service.externes.ausnahmesituation;
+package de.th.koeln.archilab.fae.faeteam3service.eventing.ausnahmesituation;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

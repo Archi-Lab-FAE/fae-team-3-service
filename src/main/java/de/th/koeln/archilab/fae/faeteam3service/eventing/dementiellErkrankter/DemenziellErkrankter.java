@@ -1,7 +1,7 @@
-package de.th.koeln.archilab.fae.faeteam3service.externes.dementiellErkrankter;
+package de.th.koeln.archilab.fae.faeteam3service.eventing.dementiellErkrankter;
 
-import de.th.koeln.archilab.fae.faeteam3service.externes.kontaktperson.Kontaktperson;
-import de.th.koeln.archilab.fae.faeteam3service.externes.positionssender.Positionssender;
+import de.th.koeln.archilab.fae.faeteam3service.eventing.kontaktperson.Kontaktperson;
+import de.th.koeln.archilab.fae.faeteam3service.eventing.positionssender.Positionssender;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 

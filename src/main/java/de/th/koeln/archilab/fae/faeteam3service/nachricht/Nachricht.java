@@ -1,24 +1,26 @@
 package de.th.koeln.archilab.fae.faeteam3service.nachricht;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
-import de.th.koeln.archilab.fae.faeteam3service.core.AbstractEntity;
 import de.th.koeln.archilab.fae.faeteam3service.antwort.Antwort;
 import de.th.koeln.archilab.fae.faeteam3service.ausnahmesituation.Ausnahmesituation;
-import lombok.*;
+import de.th.koeln.archilab.fae.faeteam3service.core.AbstractEntity;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Setter;
+import lombok.ToString;
 
-import javax.persistence.*;
-import java.util.UUID;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 @Data
 @AllArgsConstructor
 @ToString(callSuper = true)
 public class Nachricht extends AbstractEntity {
-
-    @Id
-    @Getter
-    private String nachrichtId;
 
     @JsonUnwrapped
     private NachrichtText nachrichtText;
@@ -34,11 +36,15 @@ public class Nachricht extends AbstractEntity {
 
     public Nachricht() {
         this.nachrichtText = new NachrichtText();
-        this.nachrichtId = UUID.randomUUID().toString();
     }
 
     public Nachricht(NachrichtText nachrichtenText) {
         this.nachrichtText = nachrichtenText;
-        this.nachrichtId = UUID.randomUUID().toString();
+    }
+
+    @Override
+    @JsonProperty("antwortId")
+    public String getEntityId() {
+        return super.getEntityId();
     }
 }

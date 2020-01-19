@@ -1,12 +1,14 @@
 package de.th.koeln.archilab.fae.faeteam3service.antwort;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import de.th.koeln.archilab.fae.faeteam3service.core.AbstractEntity;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.Entity;
-import javax.persistence.Id;
-import java.util.UUID;
 
 @Entity
 @Data
@@ -14,17 +16,18 @@ import java.util.UUID;
 @AllArgsConstructor
 public class Antwort extends AbstractEntity {
 
-    @Id
-    @Getter
-    private String antwortId;
-
     @Setter
     @JsonUnwrapped
     private AntwortTyp antwortTyp;
 
     public Antwort() {
-        this.antwortId = UUID.randomUUID().toString();
         this.antwortTyp = new AntwortTyp();
+    }
+
+    @Override
+    @JsonProperty("antwortId")
+    public String getEntityId() {
+        return super.getEntityId();
     }
 
 }

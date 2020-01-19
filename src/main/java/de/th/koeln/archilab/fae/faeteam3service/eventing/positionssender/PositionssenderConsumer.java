@@ -1,4 +1,4 @@
-package de.th.koeln.archilab.fae.faeteam3service.externes.positionssender;
+package de.th.koeln.archilab.fae.faeteam3service.eventing.positionssender;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.java.Log;

@@ -1,7 +1,6 @@
-package de.th.koeln.archilab.fae.faeteam3service.externes.kontaktperson;
+package de.th.koeln.archilab.fae.faeteam3service.eventing.dementiellErkrankter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import de.th.koeln.archilab.fae.faeteam3service.externes.positionssender.Positionssender;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -11,17 +10,17 @@ import java.io.IOException;
 
 @Log
 @Service
-public class KontaktpersonConsumer {
+public class DementiellErkrankterConsumer {
 
     @Autowired
-    private KontaktpersonRepository kontaktpersonRepository;
+    private DemenziellErkrankterRepository demenziellErkrankterRepository;
 
-    @KafkaListener(topics = "kontaktperson", groupId = "fae-team-3-service")
+    @KafkaListener(topics = "dementiellErkrankter", groupId = "fae-team-3-service")
     public void consume(String input) throws IOException {
         log.info(String.format("#### -> Consumed message -> %s", input));
 
         ObjectMapper mapper = new ObjectMapper();
-        Kontaktperson kontaktperson = mapper.readValue(input, Kontaktperson.class);
-        kontaktpersonRepository.save(kontaktperson);
+        DemenziellErkrankter demenziellErkrankter = mapper.readValue(input, DemenziellErkrankter.class);
+        demenziellErkrankterRepository.save(demenziellErkrankter);
     }
 }

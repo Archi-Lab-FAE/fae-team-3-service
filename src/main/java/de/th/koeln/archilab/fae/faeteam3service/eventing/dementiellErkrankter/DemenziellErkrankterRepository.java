@@ -1,4 +1,4 @@
-package de.th.koeln.archilab.fae.faeteam3service.externes.dementiellErkrankter;
+package de.th.koeln.archilab.fae.faeteam3service.eventing.dementiellErkrankter;
 
 import org.springframework.data.repository.CrudRepository;
 

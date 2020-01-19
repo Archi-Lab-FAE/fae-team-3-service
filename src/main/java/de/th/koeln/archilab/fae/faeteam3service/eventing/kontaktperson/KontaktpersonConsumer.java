@@ -1,4 +1,4 @@
-package de.th.koeln.archilab.fae.faeteam3service.externes.dementiellErkrankter;
+package de.th.koeln.archilab.fae.faeteam3service.eventing.kontaktperson;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.java.Log;
@@ -10,17 +10,17 @@ import java.io.IOException;
 
 @Log
 @Service
-public class DementiellErkrankterConsumer {
+public class KontaktpersonConsumer {
 
     @Autowired
-    private DemenziellErkrankterRepository demenziellErkrankterRepository;
+    private KontaktpersonRepository kontaktpersonRepository;
 
-    @KafkaListener(topics = "dementiellErkrankter", groupId = "fae-team-3-service")
+    @KafkaListener(topics = "kontaktperson", groupId = "fae-team-3-service")
     public void consume(String input) throws IOException {
         log.info(String.format("#### -> Consumed message -> %s", input));
 
         ObjectMapper mapper = new ObjectMapper();
-        DemenziellErkrankter demenziellErkrankter = mapper.readValue(input, DemenziellErkrankter.class);
-        demenziellErkrankterRepository.save(demenziellErkrankter);
+        Kontaktperson kontaktperson = mapper.readValue(input, Kontaktperson.class);
+        kontaktpersonRepository.save(kontaktperson);
     }
 }
