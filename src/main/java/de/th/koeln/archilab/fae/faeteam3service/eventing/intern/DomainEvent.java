@@ -9,7 +9,8 @@ public class DomainEvent {
   @Id
   private String id;
   private String key;
-  private ZonedDateTime time;
+  private ZonedDateTime timestamp;
+  private Long version;
   private String type;
   private String payload;
 
@@ -29,12 +30,20 @@ public class DomainEvent {
     this.key = key;
   }
 
-  public ZonedDateTime getTime() {
-    return time;
+  public ZonedDateTime getTimestamp() {
+    return timestamp;
   }
 
-  public void setTime(ZonedDateTime time) {
-    this.time = time;
+  public void setTimestamp(ZonedDateTime timestamp) {
+    this.timestamp = timestamp;
+  }
+
+  public Long getVersion() {
+    return version;
+  }
+
+  public void setVersion(final Long version) {
+    this.version = version;
   }
 
   public String getType() {

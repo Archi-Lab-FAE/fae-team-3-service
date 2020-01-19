@@ -19,7 +19,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.concurrent.ListenableFutureCallback;
 
-
 @Service
 public class EventPublishingEntityListenerAdapter implements ApplicationContextAware {
 
@@ -69,7 +68,8 @@ public class EventPublishingEntityListenerAdapter implements ApplicationContextA
       final DomainEvent result = new DomainEvent();
       result.setId(UUID.randomUUID().toString());
       result.setKey(entity.getEntityId());
-      result.setTime(ZonedDateTime.now(ZoneOffset.UTC));
+      result.setTimestamp(ZonedDateTime.now(ZoneOffset.UTC));
+      result.setVersion(0L); // TODO: Version iterieren
       result.setType("ausnahmesituation-" + eventType);
       result.setPayload(objectMapper.writeValueAsString(entity));
       return result;
