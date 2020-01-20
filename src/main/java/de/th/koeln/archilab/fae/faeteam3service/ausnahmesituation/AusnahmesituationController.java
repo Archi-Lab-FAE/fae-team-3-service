@@ -61,4 +61,12 @@ public class AusnahmesituationController {
     log.info("Löschen der Ausnahmesituation mit ID: " + ausnahmesituationId);
     ausnahmesituationRepository.deleteById(ausnahmesituationId);
   }
+
+
+  @DeleteMapping("/ausnahmesituation/all")
+  public void deleteAllAusnahmesituation() {
+    ausnahmesituationRepository.deleteAll();
+  }
+
+
 }
