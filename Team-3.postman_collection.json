@@ -1,0 +1,638 @@
+{
+	"info": {
+		"_postman_id": "af7b7041-9378-4c3f-a3df-0291941cbdcb",
+		"name": "Team-3",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ausnahmesituation",
+			"item": [
+				{
+					"name": "/ausnahmesituation",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/team-3/ausnahmesituation",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"team-3",
+								"ausnahmesituation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/ausnahmesituation",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"positionssenderId\" : \"1\",\n\t\"text\" : \"Test\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/team-3/ausnahmesituation",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"team-3",
+								"ausnahmesituation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/ausnahmesituation/{ausnahmesituationId}",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/team-3/ausnahmesituation/d4e3f5ee-1cbd-405f-9dc1-90b946a1322b",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"team-3",
+								"ausnahmesituation",
+								"d4e3f5ee-1cbd-405f-9dc1-90b946a1322b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/ausnahmesituation/all",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/team-3/ausnahmesituation/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"team-3",
+								"ausnahmesituation",
+								"all"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "positionssender",
+			"item": [
+				{
+					"name": "/positionssender",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/team-3/positionssender",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"team-3",
+								"positionssender"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/positionssender",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"positionssenderId\" : \"1\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/team-3/positionssender",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"team-3",
+								"positionssender"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/positionssender/all",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/team-3/positionssender/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"team-3",
+								"positionssender",
+								"all"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "kontaktperson",
+			"item": [
+				{
+					"name": "/kontaktperson",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/team-3/kontaktperson",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"team-3",
+								"kontaktperson"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/kontaktperson",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"Fritz\",\n\t\"vorname\" : \"Fritz\",\n\t\"telefonnummer\" : \"123456789\",\n\t\"aktiv\" : true\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/team-3/kontaktperson",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"team-3",
+								"kontaktperson"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/kontaktperson/all",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/team-3/kontaktperson/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"team-3",
+								"kontaktperson",
+								"all"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "demenziellerkrankter",
+			"item": [
+				{
+					"name": "/demenziellerkrankter",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/team-3/demenziellerkrankter",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"team-3",
+								"demenziellerkrankter"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/demenziellerkrankter",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"Hilde\",\n\t\"vorname\" : \"Hilde\",\n\t\"kontaktpersonen\" : [ \n\t\t{\n\t\t\t\"name\" : \"Fritz\",\n\t\t\t\"vorname\" : \"Fritz\",\n\t\t\t\"telefonnummer\" : \"123456789\",\n\t\t\t\"aktiv\" : true,\n\t\t\t\"prioritaet\" : 1\n\t\t},\n\t\t{\n\t\t\t\"name\" : \"Maria\",\n\t\t\t\"vorname\" : \"Maria\",\n\t\t\t\"telefonnummer\" : \"987654321\",\n\t\t\t\"aktiv\" : true,\n\t\t\t\"prioritaet\" : 2\n\t\t}\n\t\t],\n\t\"positionssender\" : [\n\t\t{\n\t\t\t\"positionssenderId\": \"1\"\n\t\t}]\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/team-3/demenziellerkrankter",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"team-3",
+								"demenziellerkrankter"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/demenziellerkrankter/all",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/team-3/demenziellerkrankter/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"team-3",
+								"demenziellerkrankter",
+								"all"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "nachricht",
+			"item": [
+				{
+					"name": "/ausnahmesituation/nachrichten",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/team-3/ausnahmesituation/nachrichten",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"team-3",
+								"ausnahmesituation",
+								"nachrichten"
+							]
+						},
+						"description": "Dieser Endpoint ist nur für Testzwecke"
+					},
+					"response": []
+				},
+				{
+					"name": "/ausnahmesituation/{ausnahmesituationId}/nachrichten",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/team-3//ausnahmesituation/5fb165d9-8f74-4af2-9803-4e45f29c5fb6/nachrichten",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"team-3",
+								"",
+								"ausnahmesituation",
+								"5fb165d9-8f74-4af2-9803-4e45f29c5fb6",
+								"nachrichten"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/ausnahmesituation/{ausnahmesituationId}/nachrichten",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"text\" : \"Kannst du Maria abholen Hilde? Fritz hat leider keine Zeit. ERNEUT\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/team-3/ausnahmesituation/54c4764d-64bb-4494-be63-4f0347d2a852/nachrichten",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"team-3",
+								"ausnahmesituation",
+								"54c4764d-64bb-4494-be63-4f0347d2a852",
+								"nachrichten"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "antwort",
+			"item": [
+				{
+					"name": "/nachricht/{nachrichtId}/antwort",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"antwortTyp\" : \"KANN_NICHT_HELFEN\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/team-3/nachricht/431373c7-55a8-44fb-bea0-decf791fa5f7/antwort",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"team-3",
+								"nachricht",
+								"431373c7-55a8-44fb-bea0-decf791fa5f7",
+								"antwort"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "kafka",
+			"item": [
+				{
+					"name": "http://localhost:8081/team3/kafka/publish?message=Was geht ab",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/team-3/kafka/publish?message=Was geht ab",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"team-3",
+								"kafka",
+								"publish"
+							],
+							"query": [
+								{
+									"key": "message",
+									"value": "Was geht ab"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
