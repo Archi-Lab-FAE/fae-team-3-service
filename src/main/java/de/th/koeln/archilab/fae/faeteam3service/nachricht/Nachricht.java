@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import de.th.koeln.archilab.fae.faeteam3service.antwort.Antwort;
 import de.th.koeln.archilab.fae.faeteam3service.ausnahmesituation.Ausnahmesituation;
 import de.th.koeln.archilab.fae.faeteam3service.core.AbstractEntity;
+import de.th.koeln.archilab.fae.faeteam3service.eventing.kontaktperson.Kontaktperson;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -16,7 +17,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Setter;
 import lombok.ToString;
-
 
 @Entity
 @Data
@@ -36,12 +36,17 @@ public class Nachricht extends AbstractEntity {
   @OneToOne(cascade = CascadeType.ALL)
   private Antwort antwort;
 
+  @OneToOne
+  @Setter
+  private Kontaktperson kontaktperson;
+
   public Nachricht() {
     this.nachrichtText = new NachrichtText();
   }
 
-  public Nachricht(NachrichtText nachrichtenText) {
+  public Nachricht(NachrichtText nachrichtenText, Kontaktperson kontaktperson) {
     this.nachrichtText = nachrichtenText;
+    this.kontaktperson = kontaktperson;
   }
 
   @Override

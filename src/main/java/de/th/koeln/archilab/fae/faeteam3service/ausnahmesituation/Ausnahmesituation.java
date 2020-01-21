@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import de.th.koeln.archilab.fae.faeteam3service.core.AbstractEntity;
 import de.th.koeln.archilab.fae.faeteam3service.eventing.EventPublishingEntityListener;
+import de.th.koeln.archilab.fae.faeteam3service.eventing.positionssender.Positionssender;
 import de.th.koeln.archilab.fae.faeteam3service.nachricht.Nachricht;
 import de.th.koeln.archilab.fae.faeteam3service.nachricht.NachrichtText;
 
@@ -16,6 +17,7 @@ import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.validation.Valid;
 
 import lombok.AccessLevel;
@@ -31,6 +33,7 @@ import lombok.ToString;
 @ToString(callSuper = true)
 public class Ausnahmesituation extends AbstractEntity {
 
+  @OneToOne
   @Valid
   @Setter
   @JsonUnwrapped
@@ -46,7 +49,7 @@ public class Ausnahmesituation extends AbstractEntity {
   @JsonManagedReference
   private Set<Nachricht> nachrichten = new HashSet<>();
 
-  NachrichtText getNachrichtText() {
+  public NachrichtText getNachrichtText() {
     return nachrichtText;
   }
 

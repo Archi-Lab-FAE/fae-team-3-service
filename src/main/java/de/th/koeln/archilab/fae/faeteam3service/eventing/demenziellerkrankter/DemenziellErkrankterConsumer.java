@@ -1,4 +1,4 @@
-package de.th.koeln.archilab.fae.faeteam3service.eventing.dementiellerkrankter;
+package de.th.koeln.archilab.fae.faeteam3service.eventing.demenziellerkrankter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -12,12 +12,12 @@ import org.springframework.stereotype.Service;
 
 @Log
 @Service
-public class DementiellErkrankterConsumer {
+public class DemenziellErkrankterConsumer {
 
   @Autowired
   private DemenziellErkrankterRepository demenziellErkrankterRepository;
 
-  @KafkaListener(topics = "dementiellErkrankter", groupId = "fae-team-3-service")
+  @KafkaListener(topics = "demenziellErkrankter", groupId = "fae-team-3-service")
   public void consume(String input) throws IOException {
     log.info(String.format("#### -> Consumed message -> %s", input));
 

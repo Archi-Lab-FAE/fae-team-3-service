@@ -20,6 +20,7 @@ public class Kontaktperson {
   private String vorname;
   private String telefonnummer;
   private Boolean aktiv;
+  private Integer prioritaet;
 
   public Kontaktperson() {
     this.id = UUID.randomUUID().toString();

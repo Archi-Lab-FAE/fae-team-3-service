@@ -1,7 +1,6 @@
 package de.th.koeln.archilab.fae.faeteam3service.ausnahmesituation;
 
-import de.th.koeln.archilab.fae.faeteam3service.nachricht.Nachricht;
-import de.th.koeln.archilab.fae.faeteam3service.nachricht.NachrichtRepository;
+import de.th.koeln.archilab.fae.faeteam3service.nachricht.service.NachrichtenService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
@@ -17,17 +16,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-
 @Log
-@Tag(name = "ausnahmesituation", description = "Ausnahmesituation API")
+@Tag(name = "Ausnahmesituation", description = "Ausnahmesituation API")
 @RestController
 public class AusnahmesituationController {
 
   @Autowired
   private AusnahmesituationRepository ausnahmesituationRepository;
-
-  @Autowired
-  private NachrichtRepository nachrichtRepository;
 
   @Operation(summary = "Ausnahmesituation erstellen",
       description = "",
@@ -39,11 +34,8 @@ public class AusnahmesituationController {
       @Valid @RequestBody Ausnahmesituation ausnahmesituation) {
     ausnahmesituation = ausnahmesituationRepository.save(ausnahmesituation);
 
-    Nachricht neueNachricht = nachrichtRepository.save(
-        new Nachricht(ausnahmesituation.getNachrichtText()));
-    ausnahmesituation.addNachricht(neueNachricht);
+    NachrichtenService.lookup().send(ausnahmesituation, 1);
 
-    nachrichtRepository.save(neueNachricht);
     return ausnahmesituation;
   }
 
