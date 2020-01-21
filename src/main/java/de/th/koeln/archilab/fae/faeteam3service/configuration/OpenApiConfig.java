@@ -20,7 +20,7 @@ public class OpenApiConfig {
 
   private List<Server> configServer() {
     Server server = new Server();
-    server.setUrl("https://api.fae.archi-lab.io/");
+    server.setUrl("https://api.fae.archi-lab.io/team-3/");
     server.description("Generated server url");
     return Arrays.asList(server);
   }
