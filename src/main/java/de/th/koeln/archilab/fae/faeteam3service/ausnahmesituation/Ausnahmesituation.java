@@ -61,7 +61,7 @@ public class Ausnahmesituation extends AbstractEntity {
   }
 
   @Override
-  @JsonProperty("ausnamesituationId")
+  @JsonProperty("ausnahmesituationId")
   public String getEntityId() {
     return super.getEntityId();
   }
