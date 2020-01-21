@@ -34,7 +34,7 @@ public class Ausnahmesituation extends AbstractEntity {
   @Valid
   @Setter
   @JsonUnwrapped
-  private Tracker tracker;
+  private Positionssender positionssender;
 
   @Getter
   @JsonUnwrapped

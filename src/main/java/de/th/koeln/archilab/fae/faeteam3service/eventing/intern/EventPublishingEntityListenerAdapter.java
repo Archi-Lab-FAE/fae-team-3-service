@@ -3,6 +3,11 @@ package de.th.koeln.archilab.fae.faeteam3service.eventing.intern;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import de.th.koeln.archilab.fae.faeteam3service.core.AbstractEntity;
+
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
+import java.util.UUID;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +19,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.concurrent.ListenableFutureCallback;
 
-import java.time.ZoneOffset;
-import java.time.ZonedDateTime;
-import java.util.UUID;
 
 @Service
 public class EventPublishingEntityListenerAdapter implements ApplicationContextAware {
@@ -42,7 +44,8 @@ public class EventPublishingEntityListenerAdapter implements ApplicationContextA
     final DomainEvent domainEvent = toEvent(entity, action, objectMapper);
 
     ListenableFuture<SendResult<String, String>> future = this.template
-            .send("ausnahmesituation", entity.getEntityId(), this.objectMapper.writeValueAsString(domainEvent));
+        .send("ausnahmesituation", entity.getEntityId(),
+            this.objectMapper.writeValueAsString(domainEvent));
 
     future.addCallback(new ListenableFutureCallback<SendResult<String, String>>() {
       @Override

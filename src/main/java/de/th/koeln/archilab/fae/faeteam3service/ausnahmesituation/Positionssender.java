@@ -17,10 +17,10 @@ import lombok.extern.java.Log;
 @Setter(AccessLevel.NONE)
 @ToString
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-class Tracker {
+class Positionssender {
 
   @NotNull(message = "Should not be null!")
   @NotEmpty(message = "Should not be empty!")
-  private String trackerId;
+  private String positionssenderId;
 
 }
