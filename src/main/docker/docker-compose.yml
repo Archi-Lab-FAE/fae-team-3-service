@@ -4,7 +4,7 @@ services:
   postgres:
     image: postgres:10.1
     volumes:
-      - nachrichtensystem_kafka_db:/var/lib/postgresql/data
+      - nachrichtensystem_new_db:/var/lib/postgresql/data
     environment:
       - POSTGRES_PASSWORD=_FAE_DeMO_MS_2019
       - POSTGRES_USER=nachrichtensystem
