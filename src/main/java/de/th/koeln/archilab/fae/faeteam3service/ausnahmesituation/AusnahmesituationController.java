@@ -1,6 +1,7 @@
 package de.th.koeln.archilab.fae.faeteam3service.ausnahmesituation;
 
 import de.th.koeln.archilab.fae.faeteam3service.nachricht.service.NachrichtenService;
+import de.th.koeln.archilab.fae.faeteam3service.nachricht.service.TimeoutService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+
 @Log
 @Tag(name = "Ausnahmesituation", description = "Ausnahmesituation API")
 @RestController
@@ -24,6 +26,12 @@ public class AusnahmesituationController {
   @Autowired
   private AusnahmesituationRepository ausnahmesituationRepository;
 
+  @Autowired
+  TimeoutService timeoutService;
+
+  @Autowired
+  NachrichtenService nachrichtenService;
+
   @Operation(summary = "Ausnahmesituation erstellen",
       description = "",
       tags = {"ausnahmesituation"})
@@ -31,10 +39,11 @@ public class AusnahmesituationController {
       consumes = {"application/json"},
       produces = {"application/json"})
   public Ausnahmesituation createAusnahmesituation(
-      @Valid @RequestBody Ausnahmesituation ausnahmesituation) {
+      @Valid @RequestBody Ausnahmesituation ausnahmesituation) throws InterruptedException {
     ausnahmesituation = ausnahmesituationRepository.save(ausnahmesituation);
 
-    NachrichtenService.lookup().send(ausnahmesituation, 1);
+    nachrichtenService.send(ausnahmesituation);
+    timeoutService.checkTimeout(ausnahmesituation.getEntityId());
 
     return ausnahmesituation;
   }

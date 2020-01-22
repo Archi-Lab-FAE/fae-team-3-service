@@ -26,6 +26,9 @@ public class AntwortController {
   @Autowired
   private AusnahmesituationRepository ausnahmesituationRepository;
 
+  @Autowired
+  NachrichtenService nachrichtenService;
+
   @Operation(summary = "Antwort für eine Nachricht erstellen", description = "", tags = {"Antwort"})
   @PostMapping(value = "/nachricht/{nachrichtId}/antwort", consumes = {"application/json"})
   public Antwort createAntwort(@PathVariable String nachrichtId, @RequestBody Antwort antwort) {
@@ -48,9 +51,7 @@ public class AntwortController {
 
       if (antwort.getAntwortTyp() == AntwortTyp.KANN_NICHT_HELFEN) {
         ausnahmesituationRepository.findById(nachricht.getAusnahmesituation().getEntityId())
-            .ifPresent(ausnahmesituation -> {
-              NachrichtenService.lookup().send(ausnahmesituation, 2);
-            });
+            .ifPresent(ausnahmesituation -> nachrichtenService.send(ausnahmesituation));
       }
     });
 

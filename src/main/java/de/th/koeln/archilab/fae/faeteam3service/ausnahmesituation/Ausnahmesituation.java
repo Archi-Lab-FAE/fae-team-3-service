@@ -68,5 +68,10 @@ public class Ausnahmesituation extends AbstractEntity {
   public String getEntityId() {
     return super.getEntityId();
   }
+
+  @Override
+  public String getEventClass() {
+    return "ausnahmesituation";
+  }
 }
 

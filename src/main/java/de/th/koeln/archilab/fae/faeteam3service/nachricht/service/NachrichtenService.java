@@ -7,16 +7,18 @@ import de.th.koeln.archilab.fae.faeteam3service.eventing.kontaktperson.Kontaktpe
 import de.th.koeln.archilab.fae.faeteam3service.eventing.positionssender.Positionssender;
 import de.th.koeln.archilab.fae.faeteam3service.nachricht.Nachricht;
 import de.th.koeln.archilab.fae.faeteam3service.nachricht.NachrichtRepository;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Service;
 
 @Log
 @Service
-public class NachrichtenService implements ApplicationContextAware {
-  private static ApplicationContext applicationContext;
+public class NachrichtenService {
 
   @Autowired
   DemenziellErkrankterRepository demenziellErkrankterRepository;
@@ -24,38 +26,41 @@ public class NachrichtenService implements ApplicationContextAware {
   @Autowired
   NachrichtRepository nachrichtRepository;
 
-  public static NachrichtenService lookup() {
-    return applicationContext.getBean(NachrichtenService.class);
-  }
+  public void send(Ausnahmesituation ausnahmesituation) {
+    String positionssenderId = ausnahmesituation.getPositionssender().getPositionssenderId();
+    DemenziellErkrankter demenziellErkrankter = getDemeziellErkrankterByPositionssenderId(
+        positionssenderId);
 
-  public void send(Ausnahmesituation ausnahmesituation, int kontaktpersonPrioritaet) {
+    List<Kontaktperson> kontaktpersonen = new ArrayList<>(
+        demenziellErkrankter.getKontaktpersonen());
+    Set<Nachricht> nachrichten = ausnahmesituation.getNachrichten();
 
-    boolean alleKontaktpersonenBenachrichtigt = false;
-
-    for (Nachricht nachricht : ausnahmesituation.getNachrichten()) {
-      if (nachricht.getKontaktperson().getPrioritaet() == kontaktpersonPrioritaet) {
-        alleKontaktpersonenBenachrichtigt = true;
+    for (Nachricht nachricht : nachrichten) {
+      if (kontaktpersonen.contains(nachricht.getKontaktperson())) {
+        kontaktpersonen.remove(nachricht.getKontaktperson());
       }
     }
 
-    if (alleKontaktpersonenBenachrichtigt == false) {
-      String positionssenderId = ausnahmesituation.getPositionssender().getPositionssenderId();
-      DemenziellErkrankter demenziellErkrankter = getDemeziellErkrankterByPositionssenderId(
-          positionssenderId);
-      Kontaktperson kontaktperson = getKontaktpersonByPrioritaet(
-          demenziellErkrankter, kontaktpersonPrioritaet);
+    kontaktpersonen.removeIf(kontaktperson -> !kontaktperson.getAktiv());
+    kontaktpersonen.sort((o1, o2) -> o1.getPrioritaet() - o2.getPrioritaet());
 
+    // TODO: Mit Team 1 absprechen ob das Altersheim als Kontaktperson mit letzter Priorität hat
+    if (kontaktpersonen.isEmpty()) {
+      log.info("Es wurden bereits alle Kontaktpersonen benachrichtigt...");
+    } else {
       Nachricht neueNachricht = nachrichtRepository.save(
-          new Nachricht(ausnahmesituation.getNachrichtText(), kontaktperson));
+          new Nachricht(ausnahmesituation.getNachrichtText(), kontaktpersonen.get(0)));
       ausnahmesituation.addNachricht(neueNachricht);
 
       nachrichtRepository.save(neueNachricht);
 
-      log.info("Nachricht an " + kontaktperson.getVorname()
-          + " mit Prioritaet " + kontaktperson.getPrioritaet() + " gesendet ...");
+      log.info("Nachricht an " + kontaktpersonen.get(0).getVorname()
+          + " mit Prioritaet " + kontaktpersonen.get(0).getPrioritaet() + " gesendet ...");
     }
+
   }
 
+  // TODO: In DemenziellErkrankterRepository implementieren
   private DemenziellErkrankter getDemeziellErkrankterByPositionssenderId(String positionssenderId) {
     for (DemenziellErkrankter demenziellErkrankter : demenziellErkrankterRepository.findAll()) {
       for (Positionssender positionssender : demenziellErkrankter.getPositionssender()) {
@@ -64,21 +69,6 @@ public class NachrichtenService implements ApplicationContextAware {
         }
       }
     }
-    return null;
-  }
-
-  private Kontaktperson getKontaktpersonByPrioritaet(
-      DemenziellErkrankter demenziellErkrankter, int prioritaet) {
-    for (Kontaktperson kontaktperson : demenziellErkrankter.getKontaktpersonen()) {
-      if (kontaktperson.getPrioritaet() == prioritaet) {
-        return kontaktperson;
-      }
-    }
-    return null;
-  }
-
-  @Override
-  public void setApplicationContext(ApplicationContext context) {
-    applicationContext = context;
+    return new DemenziellErkrankter();
   }
 }
