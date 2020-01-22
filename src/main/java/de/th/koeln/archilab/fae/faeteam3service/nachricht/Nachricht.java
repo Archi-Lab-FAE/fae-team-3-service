@@ -6,9 +6,12 @@ import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import de.th.koeln.archilab.fae.faeteam3service.antwort.Antwort;
 import de.th.koeln.archilab.fae.faeteam3service.ausnahmesituation.Ausnahmesituation;
 import de.th.koeln.archilab.fae.faeteam3service.core.AbstractEntity;
+import de.th.koeln.archilab.fae.faeteam3service.eventing.EventPublishingEntityListener;
+import de.th.koeln.archilab.fae.faeteam3service.eventing.kontaktperson.Kontaktperson;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
@@ -17,9 +20,9 @@ import lombok.Data;
 import lombok.Setter;
 import lombok.ToString;
 
-
 @Entity
 @Data
+@EntityListeners(EventPublishingEntityListener.class)
 @AllArgsConstructor
 @ToString(callSuper = true)
 public class Nachricht extends AbstractEntity {
@@ -36,17 +39,27 @@ public class Nachricht extends AbstractEntity {
   @OneToOne(cascade = CascadeType.ALL)
   private Antwort antwort;
 
+  @OneToOne
+  @Setter
+  private Kontaktperson kontaktperson;
+
   public Nachricht() {
     this.nachrichtText = new NachrichtText();
   }
 
-  public Nachricht(NachrichtText nachrichtenText) {
+  public Nachricht(NachrichtText nachrichtenText, Kontaktperson kontaktperson) {
     this.nachrichtText = nachrichtenText;
+    this.kontaktperson = kontaktperson;
   }
 
   @Override
   @JsonProperty("nachrichtId")
   public String getEntityId() {
     return super.getEntityId();
+  }
+
+  @Override
+  public String getEventClass() {
+    return "nachricht";
   }
 }

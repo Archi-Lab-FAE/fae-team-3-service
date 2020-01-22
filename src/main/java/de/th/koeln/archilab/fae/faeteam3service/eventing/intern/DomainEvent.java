@@ -1,18 +1,16 @@
 package de.th.koeln.archilab.fae.faeteam3service.eventing.intern;
 
-import java.time.ZonedDateTime;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import de.th.koeln.archilab.fae.faeteam3service.core.AbstractEntity;
 
-@Entity
+import java.time.ZonedDateTime;
+
 public class DomainEvent {
-  @Id
   private String id;
   private String key;
   private ZonedDateTime timestamp;
   private Long version;
   private String type;
-  private String payload;
+  private AbstractEntity payload;
 
   public String getId() {
     return id;
@@ -54,11 +52,11 @@ public class DomainEvent {
     this.type = type;
   }
 
-  public String getPayload() {
+  public AbstractEntity getPayload() {
     return payload;
   }
 
-  public void setPayload(String payload) {
+  public void setPayload(AbstractEntity payload) {
     this.payload = payload;
   }
 }

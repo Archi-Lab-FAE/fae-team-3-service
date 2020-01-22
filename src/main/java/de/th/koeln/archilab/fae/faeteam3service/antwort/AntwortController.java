@@ -2,6 +2,7 @@ package de.th.koeln.archilab.fae.faeteam3service.antwort;
 
 import de.th.koeln.archilab.fae.faeteam3service.ausnahmesituation.AusnahmesituationRepository;
 import de.th.koeln.archilab.fae.faeteam3service.nachricht.NachrichtRepository;
+import de.th.koeln.archilab.fae.faeteam3service.nachricht.service.NachrichtenService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.java.Log;
@@ -25,26 +26,33 @@ public class AntwortController {
   @Autowired
   private AusnahmesituationRepository ausnahmesituationRepository;
 
+  @Autowired
+  NachrichtenService nachrichtenService;
+
   @Operation(summary = "Antwort für eine Nachricht erstellen", description = "", tags = {"Antwort"})
   @PostMapping(value = "/nachricht/{nachrichtId}/antwort", consumes = {"application/json"})
   public Antwort createAntwort(@PathVariable String nachrichtId, @RequestBody Antwort antwort) {
     log.info("Erstelle Antwort: " + antwort.toString());
 
     Antwort antw = antwortRepository.save(antwort);
-    nachrichtRepository.findById(nachrichtId).ifPresent(it -> {
-      it.setAntwort(antw);
+    nachrichtRepository.findById(nachrichtId).ifPresent(nachricht -> {
+      nachricht.setAntwort(antw);
 
       if (antwort.getAntwortTyp() == AntwortTyp.KANN_HELFEN) {
-        it.getAusnahmesituation().setIstAbgeschlossen(true);
+        nachricht.getAusnahmesituation().setIstAbgeschlossen(true);
 
-        ausnahmesituationRepository.findById(it.getAusnahmesituation().getEntityId())
+        ausnahmesituationRepository.findById(nachricht.getAusnahmesituation().getEntityId())
             .ifPresent(ausnahmesituation -> ausnahmesituation.setIstAbgeschlossen(true));
 
         log.info("Ausnahmesituation mit der ID "
-            + it.getAusnahmesituation().getEntityId()
+            + nachricht.getAusnahmesituation().getEntityId()
             + " abgeschlossen...");
       }
 
+      if (antwort.getAntwortTyp() == AntwortTyp.KANN_NICHT_HELFEN) {
+        ausnahmesituationRepository.findById(nachricht.getAusnahmesituation().getEntityId())
+            .ifPresent(ausnahmesituation -> nachrichtenService.send(ausnahmesituation));
+      }
     });
 
     return antwortRepository.save(antw);

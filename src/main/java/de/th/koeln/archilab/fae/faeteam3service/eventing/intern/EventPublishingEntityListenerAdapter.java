@@ -19,7 +19,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.concurrent.ListenableFutureCallback;
 
-
 @Service
 public class EventPublishingEntityListenerAdapter implements ApplicationContextAware {
 
@@ -41,17 +40,17 @@ public class EventPublishingEntityListenerAdapter implements ApplicationContextA
   }
 
   public void send(final AbstractEntity entity, String action) throws JsonProcessingException {
-    final DomainEvent domainEvent = toEvent(entity, action, objectMapper);
+    final DomainEvent domainEvent = toEvent(entity, action);
 
     ListenableFuture<SendResult<String, String>> future = this.template
-        .send("ausnahmesituation", entity.getEntityId(),
+        .send(entity.getEventClass(), entity.getEntityId(),
             this.objectMapper.writeValueAsString(domainEvent));
 
     future.addCallback(new ListenableFutureCallback<SendResult<String, String>>() {
       @Override
       public void onSuccess(SendResult<String, String> result) {
         EventPublishingEntityListenerAdapter.this.logger
-            .info("Successfully send message with key: {}", result.getProducerRecord().key());
+            .info("Successfully sent message with key: {}", result.getProducerRecord().key());
       }
 
       @Override
@@ -63,16 +62,15 @@ public class EventPublishingEntityListenerAdapter implements ApplicationContextA
     });
   }
 
-  private DomainEvent toEvent(final AbstractEntity entity, final String eventType,
-                              final ObjectMapper objectMapper) {
+  private DomainEvent toEvent(final AbstractEntity entity, final String eventType) {
     try {
       final DomainEvent result = new DomainEvent();
       result.setId(UUID.randomUUID().toString());
       result.setKey(entity.getEntityId());
       result.setTimestamp(ZonedDateTime.now(ZoneOffset.UTC));
       result.setVersion(0L); // TODO: Version iterieren
-      result.setType("ausnahmesituation-" + eventType);
-      result.setPayload(objectMapper.writeValueAsString(entity));
+      result.setType(entity.getEventClass() + "-" + eventType);
+      result.setPayload(entity);
       return result;
     } catch (final Exception ex) {
       EventPublishingEntityListenerAdapter.this.logger.error("Could not create domain event", ex);

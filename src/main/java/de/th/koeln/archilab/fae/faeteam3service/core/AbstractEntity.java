@@ -1,5 +1,7 @@
 package de.th.koeln.archilab.fae.faeteam3service.core;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 
@@ -14,8 +16,7 @@ import lombok.ToString;
 @EqualsAndHashCode
 @ToString
 @MappedSuperclass
-public class AbstractEntity {
-
+public abstract class AbstractEntity {
   @Id
   private String entityId;
   private ZonedDateTime created;
@@ -28,4 +29,7 @@ public class AbstractEntity {
   public String getEntityId() {
     return entityId;
   }
+
+  @JsonIgnore
+  public abstract String getEventClass();
 }

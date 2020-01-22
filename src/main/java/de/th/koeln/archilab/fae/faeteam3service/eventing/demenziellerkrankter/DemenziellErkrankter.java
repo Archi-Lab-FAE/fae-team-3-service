@@ -1,6 +1,7 @@
-package de.th.koeln.archilab.fae.faeteam3service.eventing.dementiellerkrankter;
+package de.th.koeln.archilab.fae.faeteam3service.eventing.demenziellerkrankter;
 
 import de.th.koeln.archilab.fae.faeteam3service.eventing.kontaktperson.Kontaktperson;
+
 import de.th.koeln.archilab.fae.faeteam3service.eventing.positionssender.Positionssender;
 
 import java.util.List;
