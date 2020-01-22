@@ -27,7 +27,7 @@ services:
       - fae_backend
 
 volumes:
-  nachrichtensystem_kafka_db: {}
+  nachrichtensystem_new_db: {}
 
 networks:
   service_internal:
