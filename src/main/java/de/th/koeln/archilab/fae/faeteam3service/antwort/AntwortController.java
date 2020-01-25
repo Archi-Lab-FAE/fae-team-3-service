@@ -17,45 +17,42 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class AntwortController {
 
-  @Autowired
-  private AntwortRepository antwortRepository;
+    @Autowired
+    private AntwortRepository antwortRepository;
+    @Autowired
+    private NachrichtRepository nachrichtRepository;
+    @Autowired
+    private AusnahmesituationRepository ausnahmesituationRepository;
+    @Autowired
+    private NachrichtenService nachrichtenService;
 
-  @Autowired
-  private NachrichtRepository nachrichtRepository;
+    @Operation(summary = "Antwort für eine Nachricht erstellen", description = "", tags = {"Antwort"})
+    @PostMapping(value = "/nachricht/{nachrichtId}/antwort", consumes = {"application/json"})
+    public Antwort createAntwort(@PathVariable String nachrichtId, @RequestBody Antwort antwort) {
+        log.info("Erstelle Antwort: " + antwort.toString());
 
-  @Autowired
-  private AusnahmesituationRepository ausnahmesituationRepository;
+        Antwort antw = antwortRepository.save(antwort);
+        nachrichtRepository.findById(nachrichtId).ifPresent(nachricht -> {
+            nachricht.setAntwort(antw);
 
-  @Autowired
-  NachrichtenService nachrichtenService;
+            if (antwort.getAntwortTyp() == AntwortTyp.KANN_HELFEN) {
+                nachricht.getAusnahmesituation().setIstAbgeschlossen(true);
 
-  @Operation(summary = "Antwort für eine Nachricht erstellen", description = "", tags = {"Antwort"})
-  @PostMapping(value = "/nachricht/{nachrichtId}/antwort", consumes = {"application/json"})
-  public Antwort createAntwort(@PathVariable String nachrichtId, @RequestBody Antwort antwort) {
-    log.info("Erstelle Antwort: " + antwort.toString());
+                ausnahmesituationRepository.findById(nachricht.getAusnahmesituation().getEntityId())
+                        .ifPresent(ausnahmesituation -> ausnahmesituation.setIstAbgeschlossen(true));
 
-    Antwort antw = antwortRepository.save(antwort);
-    nachrichtRepository.findById(nachrichtId).ifPresent(nachricht -> {
-      nachricht.setAntwort(antw);
+                log.info("Ausnahmesituation mit der ID "
+                        + nachricht.getAusnahmesituation().getEntityId()
+                        + " abgeschlossen...");
+            }
 
-      if (antwort.getAntwortTyp() == AntwortTyp.KANN_HELFEN) {
-        nachricht.getAusnahmesituation().setIstAbgeschlossen(true);
+            if (antwort.getAntwortTyp() == AntwortTyp.KANN_NICHT_HELFEN) {
+                ausnahmesituationRepository.findById(nachricht.getAusnahmesituation().getEntityId())
+                        .ifPresent(ausnahmesituation -> nachrichtenService.sendeNachrichtToKontaktperson(ausnahmesituation));
+            }
+        });
 
-        ausnahmesituationRepository.findById(nachricht.getAusnahmesituation().getEntityId())
-            .ifPresent(ausnahmesituation -> ausnahmesituation.setIstAbgeschlossen(true));
-
-        log.info("Ausnahmesituation mit der ID "
-            + nachricht.getAusnahmesituation().getEntityId()
-            + " abgeschlossen...");
-      }
-
-      if (antwort.getAntwortTyp() == AntwortTyp.KANN_NICHT_HELFEN) {
-        ausnahmesituationRepository.findById(nachricht.getAusnahmesituation().getEntityId())
-            .ifPresent(ausnahmesituation -> nachrichtenService.send(ausnahmesituation));
-      }
-    });
-
-    return antwortRepository.save(antw);
-  }
+        return antwortRepository.save(antw);
+    }
 
 }
