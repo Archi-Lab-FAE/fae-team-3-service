@@ -1,4 +1,4 @@
-package de.th.koeln.archilab.fae.faeteam3service.eventing.kontaktperson;
+package de.th.koeln.archilab.fae.faeteam3service.eventing.kontaktperson.persistance;
 
 import java.util.UUID;
 import javax.persistence.Entity;
@@ -6,12 +6,16 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @Entity
 @Table(name = "kontaktPersonen")
+@ToString
 public class Kontaktperson {
 
   @Id
@@ -20,7 +24,6 @@ public class Kontaktperson {
   private String vorname;
   private String telefonnummer;
   private Boolean aktiv;
-  private Integer prioritaet;
 
   public Kontaktperson() {
     this.id = UUID.randomUUID().toString();

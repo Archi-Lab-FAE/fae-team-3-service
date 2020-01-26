@@ -1,13 +1,13 @@
-package de.th.koeln.archilab.fae.faeteam3service.nachricht;
+package de.th.koeln.archilab.fae.faeteam3service.nachricht.persistance;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
-import de.th.koeln.archilab.fae.faeteam3service.antwort.Antwort;
-import de.th.koeln.archilab.fae.faeteam3service.ausnahmesituation.Ausnahmesituation;
+import de.th.koeln.archilab.fae.faeteam3service.antwort.persistance.Antwort;
+import de.th.koeln.archilab.fae.faeteam3service.ausnahmesituation.persistance.Ausnahmesituation;
 import de.th.koeln.archilab.fae.faeteam3service.core.AbstractEntity;
 import de.th.koeln.archilab.fae.faeteam3service.eventing.EventPublishingEntityListener;
-import de.th.koeln.archilab.fae.faeteam3service.eventing.kontaktperson.Kontaktperson;
+import de.th.koeln.archilab.fae.faeteam3service.eventing.kontaktperson.persistance.Kontaktperson;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -16,14 +16,17 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Data
+@Getter
+@Setter
 @EntityListeners(EventPublishingEntityListener.class)
 @AllArgsConstructor
+@NoArgsConstructor
 @ToString(callSuper = true)
 public class Nachricht extends AbstractEntity {
 
@@ -42,10 +45,6 @@ public class Nachricht extends AbstractEntity {
   @OneToOne
   @Setter
   private Kontaktperson kontaktperson;
-
-  public Nachricht() {
-    this.nachrichtText = new NachrichtText();
-  }
 
   public Nachricht(NachrichtText nachrichtenText, Kontaktperson kontaktperson) {
     this.nachrichtText = nachrichtenText;

@@ -1,4 +1,4 @@
-package de.th.koeln.archilab.fae.faeteam3service.eventing.positionssender;
+package de.th.koeln.archilab.fae.faeteam3service.eventing.positionssender.persistance;
 
 import org.springframework.data.repository.CrudRepository;
 

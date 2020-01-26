@@ -1,4 +1,4 @@
-package de.th.koeln.archilab.fae.faeteam3service.ausnahmesituation;
+package de.th.koeln.archilab.fae.faeteam3service.ausnahmesituation.persistance;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

@@ -1,4 +1,4 @@
-package de.th.koeln.archilab.fae.faeteam3service.eventing.positionssender;
+package de.th.koeln.archilab.fae.faeteam3service.eventing.positionssender.persistance;
 
 import javax.persistence.Embeddable;
 import javax.persistence.Entity;
@@ -9,21 +9,21 @@ import javax.validation.constraints.NotNull;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.extern.java.Log;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @Entity
 @Table(name = "Positionen")
 @Log
 @Embeddable
-@Setter(AccessLevel.NONE)
 @ToString
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
 public class Positionssender {
 
   @Id

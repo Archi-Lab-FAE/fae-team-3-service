@@ -1,4 +1,4 @@
-package de.th.koeln.archilab.fae.faeteam3service.nachricht;
+package de.th.koeln.archilab.fae.faeteam3service.nachricht.persistance;
 
 import org.springframework.data.repository.CrudRepository;
 

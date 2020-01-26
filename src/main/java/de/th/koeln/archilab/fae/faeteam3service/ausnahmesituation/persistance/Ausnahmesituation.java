@@ -1,13 +1,13 @@
-package de.th.koeln.archilab.fae.faeteam3service.ausnahmesituation;
+package de.th.koeln.archilab.fae.faeteam3service.ausnahmesituation.persistance;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import de.th.koeln.archilab.fae.faeteam3service.core.AbstractEntity;
 import de.th.koeln.archilab.fae.faeteam3service.eventing.EventPublishingEntityListener;
-import de.th.koeln.archilab.fae.faeteam3service.eventing.positionssender.Positionssender;
-import de.th.koeln.archilab.fae.faeteam3service.nachricht.Nachricht;
-import de.th.koeln.archilab.fae.faeteam3service.nachricht.NachrichtText;
+import de.th.koeln.archilab.fae.faeteam3service.eventing.positionssender.persistance.Positionssender;
+import de.th.koeln.archilab.fae.faeteam3service.nachricht.persistance.Nachricht;
+import de.th.koeln.archilab.fae.faeteam3service.nachricht.persistance.NachrichtText;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -29,6 +29,7 @@ import lombok.ToString;
 @Entity
 @EntityListeners(EventPublishingEntityListener.class)
 @Getter
+@Setter
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @ToString(callSuper = true)
 public class Ausnahmesituation extends AbstractEntity {
@@ -49,19 +50,8 @@ public class Ausnahmesituation extends AbstractEntity {
   @JsonManagedReference
   private Set<Nachricht> nachrichten = new HashSet<>();
 
-  public NachrichtText getNachrichtText() {
-    return nachrichtText;
-  }
-
   @Setter
   private Boolean istAbgeschlossen = false;
-
-  public void addNachricht(Nachricht nachricht) {
-    if (!nachrichten.contains(nachricht)) {
-      this.nachrichten.add(nachricht);
-      nachricht.setAusnahmesituation(this);
-    }
-  }
 
   @Override
   @JsonProperty("ausnahmesituationId")
@@ -73,5 +63,17 @@ public class Ausnahmesituation extends AbstractEntity {
   public String getEventClass() {
     return "ausnahmesituation";
   }
+
+  public NachrichtText getNachrichtText() {
+    return nachrichtText;
+  }
+
+  public void addNachricht(Nachricht nachricht) {
+    if (!nachrichten.contains(nachricht)) {
+      nachricht.setAusnahmesituation(this);
+      this.nachrichten.add(nachricht);
+    }
+  }
+
 }
 

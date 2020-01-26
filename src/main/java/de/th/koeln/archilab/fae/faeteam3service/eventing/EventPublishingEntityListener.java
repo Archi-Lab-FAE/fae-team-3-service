@@ -32,7 +32,7 @@ public class EventPublishingEntityListener {
     try {
       EventPublishingEntityListenerAdapter.lookup().send(entity, action);
     } catch (JsonProcessingException e) {
-      e.printStackTrace();
+      log.info(e.getMessage());
     }
   }
 }
