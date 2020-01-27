@@ -68,7 +68,7 @@ public class EventPublishingEntityListenerAdapter implements ApplicationContextA
       result.setId(UUID.randomUUID().toString());
       result.setKey(entity.getEntityId());
       result.setTimestamp(ZonedDateTime.now(ZoneOffset.UTC));
-      result.setVersion(0L); // TODO: Version iterieren
+      result.setVersion(entity.getVersion());
       result.setType(entity.getEventClass() + "-" + eventType);
       result.setPayload(entity);
       return result;
