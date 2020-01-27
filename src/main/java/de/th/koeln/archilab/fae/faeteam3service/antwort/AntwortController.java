@@ -29,6 +29,11 @@ public class AntwortController {
                                   @RequestBody AntwortDto antwortDto) {
     Antwort antwort = antwortMapper.convertToEntity(antwortDto);
     antwort = antwortService.saveAntwortAndCheckAntwortTyp(nachrichtId, antwort);
-    return antwortMapper.convertToDto(antwort);
+
+    if(antwort != null){
+      return antwortMapper.convertToDto(antwort);
+    }
+
+    throw new AntwortNotAllowedException();
   }
 }
