@@ -30,9 +30,18 @@ public interface AusnahmesituationMapper {
 
   KontaktpersonDto convertToKontaktpersonDto(Kontaktperson kontaktperson);
 
+  @Mapping(source = "id", target = "positionssenderId")
   Positionssender convertToPositionssenderEntity(PositionssenderDto positionssenderDto);
 
+  @Mapping(source = "positionssenderId", target = "id")
   PositionssenderDto convertToPositionssenderDto(Positionssender positionssender);
+
+  Positionssender convertToPositionssenderEntityFromAusnahmesituationPositionssenderDto(
+      AusnahmesituationPositionssenderDto ausnahmesituationPositionssenderDto);
+
+  AusnahmesituationPositionssenderDto convertToAusnahmesituationPositionssenderDto(
+      Positionssender positionssender
+  );
 
   @Mapping(source = "text", target = "nachrichtText")
   Nachricht convertToNachrichtEntity(NachrichtDto nachrichtDto);

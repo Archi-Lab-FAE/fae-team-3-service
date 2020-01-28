@@ -20,6 +20,9 @@ public class DemenziellErkrankterConsumer {
   @Autowired
   private DemenziellErkrankterRepository demenziellErkrankterRepository;
 
+  @Autowired
+  ObjectMapper objectMapper;
+
   DemenziellErkrankterMapper demenziellErkrankterMapper = Mappers
       .getMapper(DemenziellErkrankterMapper.class);
 
@@ -27,8 +30,11 @@ public class DemenziellErkrankterConsumer {
   public void consume(String input) throws IOException {
     log.info(String.format("#### -> Consumed message -> %s", input));
 
-    ObjectMapper mapper = new ObjectMapper();
-    DemenziellErkrankterEvent demenziellErkrankterEvent = mapper
+    input = input.substring(1, input.length() - 1)
+        .replace("\\n", "")
+        .replace("\\", "");
+
+    DemenziellErkrankterEvent demenziellErkrankterEvent = objectMapper
         .readValue(input, DemenziellErkrankterEvent.class);
 
     DemenziellErkrankterDto demenziellErkrankterDto = demenziellErkrankterEvent.getPayload();

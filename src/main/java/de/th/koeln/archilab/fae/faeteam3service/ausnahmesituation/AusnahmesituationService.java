@@ -3,7 +3,6 @@ package de.th.koeln.archilab.fae.faeteam3service.ausnahmesituation;
 import de.th.koeln.archilab.fae.faeteam3service.ausnahmesituation.persistance.Ausnahmesituation;
 import de.th.koeln.archilab.fae.faeteam3service.ausnahmesituation.persistance.AusnahmesituationRepository;
 import de.th.koeln.archilab.fae.faeteam3service.nachricht.service.NachrichtenService;
-import de.th.koeln.archilab.fae.faeteam3service.nachricht.service.TimeoutService;
 
 import java.util.List;
 
@@ -21,7 +20,6 @@ public class AusnahmesituationService {
 
   @Autowired
   public AusnahmesituationService(AusnahmesituationRepository ausnahmesituationRepository,
-                                  TimeoutService timeoutService,
                                   NachrichtenService nachrichtenService) {
     this.ausnahmesituationRepository = ausnahmesituationRepository;
     this.nachrichtenService = nachrichtenService;

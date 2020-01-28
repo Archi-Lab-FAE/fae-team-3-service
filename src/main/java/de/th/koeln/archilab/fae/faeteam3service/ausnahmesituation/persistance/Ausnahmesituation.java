@@ -65,10 +65,6 @@ public class Ausnahmesituation extends AbstractEntity {
     return "ausnahmesituation";
   }
 
-  public NachrichtText getNachrichtText() {
-    return nachrichtText;
-  }
-
   public void addNachricht(Nachricht nachricht) {
     if (!nachrichten.contains(nachricht)) {
       nachricht.setAusnahmesituation(this);

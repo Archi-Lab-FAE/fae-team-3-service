@@ -4,7 +4,6 @@ import de.th.koeln.archilab.fae.faeteam3service.eventing.kontaktperson.persistan
 import de.th.koeln.archilab.fae.faeteam3service.eventing.positionssender.persistance.Positionssender;
 
 import java.util.List;
-import java.util.UUID;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -16,6 +15,7 @@ import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -26,12 +26,14 @@ import lombok.ToString;
 @Entity
 @Table(name = "demenziellErkrankte")
 @ToString
+@NoArgsConstructor
 public class DemenziellErkrankter {
 
   @Id
   private String id;
   private String name;
   private String vorname;
+  private Boolean zustimmung;
 
   @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
   @JoinColumn(name = "demenziellErkrankte_id")
@@ -41,8 +43,4 @@ public class DemenziellErkrankter {
   @JoinColumn(name = "demenziellErkrankte_id")
   private List<Positionssender> positionssender;
 
-
-  public DemenziellErkrankter() {
-    this.id = UUID.randomUUID().toString();
-  }
 }

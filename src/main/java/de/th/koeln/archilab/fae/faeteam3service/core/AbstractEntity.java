@@ -33,11 +33,11 @@ public abstract class AbstractEntity {
     return entityId;
   }
 
-  public long getVersion(){
+  public long getVersion() {
     return version;
   }
 
-  public void incrementVersion(){
+  public void incrementVersion() {
     this.version = getVersion() + 1;
   }
 

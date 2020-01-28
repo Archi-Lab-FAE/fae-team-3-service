@@ -9,6 +9,7 @@ import de.th.koeln.archilab.fae.faeteam3service.eventing.positionssender.persist
 import java.util.List;
 
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 
 @Mapper
@@ -18,8 +19,10 @@ public interface DemenziellErkrankterMapper {
 
   DemenziellErkrankterDto convertToDto(DemenziellErkrankter demenziellErkrankterDto);
 
+  @Mapping(source = "id", target = "positionssenderId")
   Positionssender convertToPositionssenderEntity(PositionssenderDto positionssenderDto);
 
+  @Mapping(source = "positionssenderId", target = "id")
   PositionssenderDto convertToPositionssenderDto(Positionssender positionssender);
 
   List<Positionssender> convertToPositionssenderEntityList(

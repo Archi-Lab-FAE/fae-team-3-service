@@ -18,10 +18,10 @@ import lombok.Setter;
 @NoArgsConstructor
 public class DemenziellErkrankterDto implements Serializable {
 
-  @NonNull
-  private String id = UUID.randomUUID().toString();
+  private String id;
   private String name;
   private String vorname;
+  private Boolean zustimmung;
   private List<KontaktpersonDto> kontaktpersonen;
   private List<PositionssenderDto> positionssender;
 

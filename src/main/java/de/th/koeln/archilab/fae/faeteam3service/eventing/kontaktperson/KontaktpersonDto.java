@@ -16,6 +16,6 @@ public class KontaktpersonDto implements Serializable {
   private String name;
   private String vorname;
   private String telefonnummer;
-  private boolean aktiv;
+  private Boolean aktiv;
 
 }

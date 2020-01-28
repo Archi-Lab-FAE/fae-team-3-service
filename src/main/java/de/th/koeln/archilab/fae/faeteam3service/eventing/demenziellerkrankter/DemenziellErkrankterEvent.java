@@ -1,5 +1,7 @@
 package de.th.koeln.archilab.fae.faeteam3service.eventing.demenziellerkrankter;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
 import java.time.LocalDateTime;
 
 import lombok.Getter;
@@ -9,19 +11,20 @@ import lombok.Setter;
 
 @Getter
 @Setter
+@JsonPropertyOrder({"id", "key", "version", "timestamp", "type", "payload"})
 public class DemenziellErkrankterEvent {
 
   @NonNull
-  private String id;
+  public String id;
   @NonNull
-  private String key;
+  public String key;
   @NonNull
-  private Long version;
+  public Long version;
   @NonNull
-  private LocalDateTime timestamp;
+  public LocalDateTime timestamp;
   @NonNull
-  private String type;
+  public String type;
   @NonNull
-  private DemenziellErkrankterDto payload;
+  public DemenziellErkrankterDto payload;
 
 }

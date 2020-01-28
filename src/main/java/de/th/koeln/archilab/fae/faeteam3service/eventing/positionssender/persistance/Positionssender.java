@@ -17,12 +17,12 @@ import lombok.extern.java.Log;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @Entity
 @Table(name = "Positionen")
 @Log
 @Embeddable
 @ToString
+@AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 public class Positionssender {
 
