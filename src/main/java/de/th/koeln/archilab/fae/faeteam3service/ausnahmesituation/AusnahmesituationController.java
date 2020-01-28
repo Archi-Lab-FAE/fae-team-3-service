@@ -1,6 +1,7 @@
 package de.th.koeln.archilab.fae.faeteam3service.ausnahmesituation;
 
 import de.th.koeln.archilab.fae.faeteam3service.ausnahmesituation.persistance.Ausnahmesituation;
+import de.th.koeln.archilab.fae.faeteam3service.core.DtoMapper;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
@@ -24,9 +25,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class AusnahmesituationController {
 
+  private final DtoMapper dtoMapper = Mappers.getMapper(DtoMapper.class);
   private AusnahmesituationService ausnahmesituationService;
-  private AusnahmesituationMapper ausnahmesituationMapper = Mappers
-      .getMapper(AusnahmesituationMapper.class);
 
   @Autowired
   public AusnahmesituationController(AusnahmesituationService ausnahmesituationService) {
@@ -41,13 +41,13 @@ public class AusnahmesituationController {
   public AusnahmesituationDto createAusnahmesituation(
       @Valid @RequestBody AusnahmesituationDto ausnahmesituationDto) {
 
-    Ausnahmesituation ausnahmesituation = ausnahmesituationMapper
-        .toAusnahmesituation(ausnahmesituationDto);
+    Ausnahmesituation ausnahmesituation = dtoMapper
+        .converToAusnahmesituationEntity(ausnahmesituationDto);
 
     ausnahmesituation = ausnahmesituationService
         .saveAusnahmesituationAndSendMessage(ausnahmesituation);
 
-    return ausnahmesituationMapper.toAusnahmesituationDto(ausnahmesituation);
+    return dtoMapper.convertToAusnahmesituationDto(ausnahmesituation);
   }
 
   @Operation(summary = "Alle Ausnahmesituationen als Liste",
@@ -55,16 +55,18 @@ public class AusnahmesituationController {
   @GetMapping("/ausnahmesituation")
   public List<AusnahmesituationDto> getAllAusnahmesituationen() {
 
-    return ausnahmesituationMapper
-        .toAusnahmesituationDtos(ausnahmesituationService.getAllAusnahmesituationen());
+    return dtoMapper
+        .convertToAusnahmesituationDtoList(ausnahmesituationService.getAllAusnahmesituationen());
   }
 
   @Operation(hidden = true)
   @GetMapping("/ausnahmesituation/{ausnahmesituationId}")
   public AusnahmesituationDto getAllAusnahmesituation(@PathVariable String ausnahmesituationId) {
+    Ausnahmesituation ausnahmesituation = ausnahmesituationService
+        .getAusnahmesituation(ausnahmesituationId);
 
-    return ausnahmesituationMapper
-        .toAusnahmesituationDto(ausnahmesituationService.getAusnahmesituation(ausnahmesituationId));
+    return dtoMapper
+        .convertToAusnahmesituationDto(ausnahmesituation);
   }
 
   @Operation(summary = "Löschen einer Ausnahmesituationen",

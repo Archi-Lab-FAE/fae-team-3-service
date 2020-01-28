@@ -20,18 +20,12 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.Valid;
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 @Entity
 @EntityListeners(EventPublishingEntityListener.class)
-@Getter
-@Setter
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
-@ToString(callSuper = true)
+@Data
 public class Ausnahmesituation extends AbstractEntity {
 
   @OneToOne

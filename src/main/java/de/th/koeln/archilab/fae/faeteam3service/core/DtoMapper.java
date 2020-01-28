@@ -1,6 +1,12 @@
-package de.th.koeln.archilab.fae.faeteam3service.ausnahmesituation;
+package de.th.koeln.archilab.fae.faeteam3service.core;
 
+import de.th.koeln.archilab.fae.faeteam3service.antwort.AntwortDto;
+import de.th.koeln.archilab.fae.faeteam3service.antwort.persistance.Antwort;
+import de.th.koeln.archilab.fae.faeteam3service.ausnahmesituation.AusnahmesituationDto;
+import de.th.koeln.archilab.fae.faeteam3service.ausnahmesituation.AusnahmesituationPositionssenderDto;
 import de.th.koeln.archilab.fae.faeteam3service.ausnahmesituation.persistance.Ausnahmesituation;
+import de.th.koeln.archilab.fae.faeteam3service.eventing.demenziellerkrankter.DemenziellErkrankterDto;
+import de.th.koeln.archilab.fae.faeteam3service.eventing.demenziellerkrankter.persistance.DemenziellErkrankter;
 import de.th.koeln.archilab.fae.faeteam3service.eventing.kontaktperson.KontaktpersonDto;
 import de.th.koeln.archilab.fae.faeteam3service.eventing.kontaktperson.persistance.Kontaktperson;
 import de.th.koeln.archilab.fae.faeteam3service.eventing.positionssender.PositionssenderDto;
@@ -16,25 +22,38 @@ import org.mapstruct.Mapping;
 
 
 @Mapper
-public interface AusnahmesituationMapper {
+public interface DtoMapper {
 
+  // Ausnahmesituation
   @Mapping(source = "text", target = "nachrichtText")
-  Ausnahmesituation toAusnahmesituation(AusnahmesituationDto ausnahmesituationDto);
+  Ausnahmesituation converToAusnahmesituationEntity(AusnahmesituationDto ausnahmesituationDto);
 
   @Mapping(source = "nachrichtText", target = "text")
-  AusnahmesituationDto toAusnahmesituationDto(Ausnahmesituation ausnahmesituation);
+  AusnahmesituationDto convertToAusnahmesituationDto(Ausnahmesituation ausnahmesituation);
 
-  List<AusnahmesituationDto> toAusnahmesituationDtos(List<Ausnahmesituation> ausnahmesituationen);
+  List<AusnahmesituationDto> convertToAusnahmesituationDtoList(
+      List<Ausnahmesituation> ausnahmesituationen);
 
+  // Kontaktperson
   Kontaktperson convertToKontaktpersonEntity(KontaktpersonDto kontaktpersonDto);
 
   KontaktpersonDto convertToKontaktpersonDto(Kontaktperson kontaktperson);
 
+  List<Kontaktperson> convertToKontaktpersonEntityList(List<KontaktpersonDto> kontaktpersonDtos);
+
+  List<KontaktpersonDto> convertToKontaktpersonDtoList(List<Kontaktperson> kontaktpersonDtos);
+
+  // Positionssender
   @Mapping(source = "id", target = "positionssenderId")
   Positionssender convertToPositionssenderEntity(PositionssenderDto positionssenderDto);
 
   @Mapping(source = "positionssenderId", target = "id")
   PositionssenderDto convertToPositionssenderDto(Positionssender positionssender);
+
+  List<Positionssender> convertToPositionssenderEntityList(
+      List<PositionssenderDto> positionssenderDtos);
+
+  List<PositionssenderDto> convertToPositionssenderDtoList(List<Positionssender> positionssender);
 
   Positionssender convertToPositionssenderEntityFromAusnahmesituationPositionssenderDto(
       AusnahmesituationPositionssenderDto ausnahmesituationPositionssenderDto);
@@ -43,6 +62,19 @@ public interface AusnahmesituationMapper {
       Positionssender positionssender
   );
 
+  // Demenziell Erkrankter
+  DemenziellErkrankter convertToDemenziellErkrankterEntity(
+      DemenziellErkrankterDto demenziellErkrankterDto);
+
+  DemenziellErkrankterDto convertToDemenziellErkrankterDto(
+      DemenziellErkrankter demenziellErkrankterDto);
+
+  // Antwort
+  AntwortDto convertToAntwortDto(Antwort antwort);
+
+  Antwort convertToAntwortEntity(AntwortDto antwortDto);
+
+  // Nachricht
   @Mapping(source = "text", target = "nachrichtText")
   Nachricht convertToNachrichtEntity(NachrichtDto nachrichtDto);
 
@@ -56,4 +88,5 @@ public interface AusnahmesituationMapper {
   default NachrichtText convertToNachrichtText(String text) {
     return new NachrichtText(text);
   }
+
 }

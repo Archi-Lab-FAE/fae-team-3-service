@@ -1,6 +1,7 @@
 package de.th.koeln.archilab.fae.faeteam3service.eventing.demenziellerkrankter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import de.th.koeln.archilab.fae.faeteam3service.core.DtoMapper;
 import de.th.koeln.archilab.fae.faeteam3service.eventing.demenziellerkrankter.persistance.DemenziellErkrankter;
 import de.th.koeln.archilab.fae.faeteam3service.eventing.demenziellerkrankter.persistance.DemenziellErkrankterRepository;
 
@@ -23,8 +24,7 @@ public class DemenziellErkrankterConsumer {
   @Autowired
   ObjectMapper objectMapper;
 
-  DemenziellErkrankterMapper demenziellErkrankterMapper = Mappers
-      .getMapper(DemenziellErkrankterMapper.class);
+  private final DtoMapper dtoMapper = Mappers.getMapper(DtoMapper.class);
 
   @KafkaListener(topics = "demenziellErkrankte", groupId = "fae-team-3-service")
   public void consume(String input) throws IOException {
@@ -39,8 +39,8 @@ public class DemenziellErkrankterConsumer {
 
     DemenziellErkrankterDto demenziellErkrankterDto = demenziellErkrankterEvent.getPayload();
 
-    DemenziellErkrankter demenziellErkrankter = demenziellErkrankterMapper
-        .convertToEntity(demenziellErkrankterDto);
+    DemenziellErkrankter demenziellErkrankter = dtoMapper
+        .convertToDemenziellErkrankterEntity(demenziellErkrankterDto);
 
     demenziellErkrankterRepository.save(demenziellErkrankter);
   }

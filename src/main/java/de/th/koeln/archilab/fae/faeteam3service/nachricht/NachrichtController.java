@@ -1,5 +1,6 @@
 package de.th.koeln.archilab.fae.faeteam3service.nachricht;
 
+import de.th.koeln.archilab.fae.faeteam3service.core.DtoMapper;
 import de.th.koeln.archilab.fae.faeteam3service.nachricht.persistance.Nachricht;
 import de.th.koeln.archilab.fae.faeteam3service.nachricht.service.NachrichtenService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -24,7 +25,7 @@ public class NachrichtController {
   @Autowired
   NachrichtenService nachrichtenService;
 
-  NachrichtMapper nachrichtMapper = Mappers.getMapper(NachrichtMapper.class);
+  private final DtoMapper dtoMapper = Mappers.getMapper(DtoMapper.class);
 
   @Operation(summary = "Nachricht für eine Ausnahmesituation erstellen",
       description = "",
@@ -35,8 +36,8 @@ public class NachrichtController {
   public NachrichtDto addNachrichtToAusnahmesituation(
       @PathVariable String ausnahmesituationId,
       @Valid @RequestBody NachrichtDto nachrichtDto) {
-    Nachricht nachricht = nachrichtMapper.convertToEntity(nachrichtDto);
+    Nachricht nachricht = dtoMapper.convertToNachrichtEntity(nachrichtDto);
     nachricht = nachrichtenService.addNachrichtToAusnahmesituation(ausnahmesituationId, nachricht);
-    return nachrichtMapper.convertToDto(nachricht);
+    return dtoMapper.convertToNachrichtDto(nachricht);
   }
 }

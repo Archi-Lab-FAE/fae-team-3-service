@@ -1,6 +1,7 @@
 package de.th.koeln.archilab.fae.faeteam3service.antwort;
 
 import de.th.koeln.archilab.fae.faeteam3service.antwort.persistance.Antwort;
+import de.th.koeln.archilab.fae.faeteam3service.core.DtoMapper;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.java.Log;
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class AntwortController {
 
-  private final AntwortMapper antwortMapper = Mappers.getMapper(AntwortMapper.class);
+  private final DtoMapper dtoMapper = Mappers.getMapper(DtoMapper.class);
 
   @Autowired
   AntwortService antwortService;
@@ -27,13 +28,13 @@ public class AntwortController {
       consumes = MediaType.APPLICATION_JSON_VALUE)
   public AntwortDto createAntwort(@PathVariable String nachrichtId,
                                   @RequestBody AntwortDto antwortDto) {
-    Antwort antwort = antwortMapper.convertToEntity(antwortDto);
+    Antwort antwort = dtoMapper.convertToAntwortEntity(antwortDto);
     antwort = antwortService.saveAntwortAndCheckAntwortTyp(nachrichtId, antwort);
 
     if (antwort == null) {
       throw new AntwortNotAllowedException();
     }
 
-    return antwortMapper.convertToDto(antwort);
+    return dtoMapper.convertToAntwortDto(antwort);
   }
 }

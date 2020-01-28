@@ -5,11 +5,9 @@ import de.th.koeln.archilab.fae.faeteam3service.eventing.positionssender.Positio
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.UUID;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 import lombok.Setter;
 
 

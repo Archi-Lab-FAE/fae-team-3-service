@@ -15,19 +15,13 @@ import javax.persistence.EntityListeners;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 @Entity
-@Getter
-@Setter
 @EntityListeners(EventPublishingEntityListener.class)
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString(callSuper = true)
+@Data
 public class Nachricht extends AbstractEntity {
 
   @JsonUnwrapped

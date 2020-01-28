@@ -39,7 +39,7 @@ public class AntwortService {
     }
 
     //Wenn die Ausnahmesituation bearbeitet wird, ignoriere diese Antwort
-    if (optionaleNachricht.get().getAusnahmesituation().getHilfeUnterwegs()) {
+    if (optionaleNachricht.get().getAusnahmesituation().getHilfeUnterwegs().booleanValue()) {
       return null;
     }
 
@@ -62,9 +62,8 @@ public class AntwortService {
     //Nächste Kontaktperson kontaktieren
     if (antwort.getAntwortTyp() == AntwortTyp.KANN_NICHT_HELFEN) {
       ausnahmesituationRepository.findById(nachricht.getAusnahmesituation().getEntityId())
-          .ifPresent(ausnahmesituation -> {
-            nachrichtenService.sendeNachrichtToKontaktperson(ausnahmesituation);
-          });
+          .ifPresent(ausnahmesituation ->
+              nachrichtenService.sendeNachrichtToKontaktperson(ausnahmesituation));
     }
 
     return antwortRepository.save(antw);
