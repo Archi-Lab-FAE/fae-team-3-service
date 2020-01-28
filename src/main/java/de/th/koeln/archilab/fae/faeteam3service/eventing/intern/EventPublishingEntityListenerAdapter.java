@@ -63,19 +63,14 @@ public class EventPublishingEntityListenerAdapter implements ApplicationContextA
   }
 
   private DomainEvent toEvent(final AbstractEntity entity, final String eventType) {
-    try {
-      final DomainEvent result = new DomainEvent();
-      result.setId(UUID.randomUUID().toString());
-      result.setKey(entity.getEntityId());
-      result.setTimestamp(ZonedDateTime.now(ZoneOffset.UTC));
-      result.setVersion(entity.getVersion());
-      result.setType(entity.getEventClass() + "-" + eventType);
-      result.setPayload(entity);
-      return result;
-    } catch (final Exception ex) {
-      EventPublishingEntityListenerAdapter.this.logger.error("Could not create domain event", ex);
-      throw new RuntimeException("could not create DomainEvent from Entity ", ex);
-    }
+    final DomainEvent result = new DomainEvent();
+    result.setId(UUID.randomUUID().toString());
+    result.setKey(entity.getEntityId());
+    result.setTimestamp(ZonedDateTime.now(ZoneOffset.UTC));
+    result.setVersion(entity.getVersion());
+    result.setType(entity.getEventClass() + "-" + eventType);
+    result.setPayload(entity);
+    return result;
   }
 
   @Override

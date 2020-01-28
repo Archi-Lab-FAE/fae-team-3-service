@@ -3,6 +3,10 @@ package de.th.koeln.archilab.fae.faeteam3service.ausnahmesituation;
 import de.th.koeln.archilab.fae.faeteam3service.ausnahmesituation.persistance.Ausnahmesituation;
 import de.th.koeln.archilab.fae.faeteam3service.core.DtoMapper;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 import java.util.List;
@@ -34,7 +38,24 @@ public class AusnahmesituationController {
   }
 
   @Operation(summary = "Ausnahmesituation erstellen",
-      tags = {"Ausnahmesituation"})
+      tags = {"Ausnahmesituation"},
+      requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(
+          description = "Test",
+          required = true,
+          content = @Content(
+              mediaType = MediaType.APPLICATION_JSON_VALUE,
+              schema = @Schema(hidden = true),
+              examples = {
+                  @ExampleObject(name = "Ausnahmesituation erstellen",
+                      value = "{\n \"positionssenderId\" : \"0a1ad64b-48ff-44e3-8260-9b584e875ac1\", \n" +
+                          "\"text\" : \"Hilde ben\\u00F6tigt dringend deine Hilfe!\"\n}",
+                      description = "Um eine Ausnahmesituation erstellen zu können, wird die ID " +
+                          "eines Positionssenders benötigt, sowie der Text den die zu übermittelnde" +
+                          " Nachricht enthalten soll.")
+              }
+          )
+      )
+  )
   @PostMapping(value = "/ausnahmesituation",
       consumes = MediaType.APPLICATION_JSON_VALUE,
       produces = MediaType.APPLICATION_JSON_VALUE)

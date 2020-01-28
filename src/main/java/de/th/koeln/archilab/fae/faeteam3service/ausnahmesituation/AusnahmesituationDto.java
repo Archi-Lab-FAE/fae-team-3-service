@@ -18,7 +18,6 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class AusnahmesituationDto {
-
   @JsonProperty("ausnahmesituationId")
   private String entityId;
   @JsonUnwrapped
