@@ -3,7 +3,7 @@ info:
   title: Zonenalarmsystem - Eventing
   version: '0.0.1'
   description: |
-    Dies ist die Event-Dokumenation für das Zonenalarmsystem. Weitere Erläuterungen zum Projekt können dem [Domain Vision Statement](https://github.com/Archi-Lab-FAE/fae-team-2-documentation).
+    Dies ist die Event-Dokumenation für das Zonenalarmsystem. Weitere Erläuterungen zum Projekt können dem [Domain Vision Statement](https://github.com/Archi-Lab-FAE/fae-team-2-documentation). Beachte dazu auch: [Event Structure](https://fae.archi-lab.io/global/2020/01/10/team-3-Event-Structure.html).
 
 defaultContentType: application/json
 
@@ -18,9 +18,19 @@ channels:
       message:
         $ref: '#/components/messages/ausnahmesituation'
 
+  team-3/nachricht:
+    publish:
+      operationId: nachricht
+      message:
+        $ref: '#/components/messages/nachricht'
+  team-3/antwort:
+    publish:
+      operationId: antwort
+      message:
+        $ref: '#/components/messages/antwort'
 
 components:
-  messages:        
+  messages:
     ausnahmesituation:
       name: Ausnahmesituation
       title: Änderung an Ausnahmesituationen
@@ -29,7 +39,22 @@ components:
         - $ref: '#/components/messageTraits/commonHeaders'
       payload:
         $ref: "#/components/schemas/ausnahmesituationPayload"
-
+    nachricht:
+      name: Nachricht
+      title: Änderung an Nachrichten
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/commonHeaders'
+      payload:
+        $ref: "#/components/schemas/nachrichtPayload"
+    antwort:
+      name: Antworten
+      title: Änderung an Antworten
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/commonHeaders'
+      payload:
+        $ref: "#/components/schemas/antwortPayload"
   schemas:
     ausnahmesituationPayload:
       type: object
@@ -45,6 +70,49 @@ components:
         text:
           type: string
           example: 'Alarmknopf Herbert wurde gedrückt.'
+        nachrichten:
+          type: array
+          items:
+            $ref: "#/components/schemas/nachrichtPayload"
+    antwortPayload:
+      type: object
+      properties:
+        antwortId:
+          type: string
+          format: uuid-as-string
+          example: '6cc4e03-4437-4efa-b78d-47defe26e1bd'
+        antwortTyp:
+          type: string
+          enum: ['KANN_HELFEN', 'KANN_NICHT_HELFEN']
+    kontaktpersonPayload:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid-as-string
+          example: '6cc4e03-4437-4efa-b78d-47defe26e1bd'
+        name:
+          type: string
+          example: 'Maria'
+        vorname:
+          type: string
+          example: 'Mustermaria'
+        telefonnummer:
+          type: string
+          example: '987654321'
+        aktiv:
+          type: boolean
+    nachrichtPayload:
+      type: object
+      properties:
+        nachrichtenId:
+          type: string
+          format: uuid-as-string
+          example: 'f33c6cd8-1697-11ea-8d71-362b9e155667'
+        kontaktperson:
+          $ref: "#/components/schemas/kontaktpersonPayload"
+        antwort:
+          $ref: "#/components/schemas/antwortPayload"
 
   messageTraits:
     commonHeaders:
