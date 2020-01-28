@@ -26,6 +26,8 @@ public class DemenziellErkrankterConsumer {
 
   private final DtoMapper dtoMapper = Mappers.getMapper(DtoMapper.class);
 
+  private enum EventType { CREATED, UPDATED, DELETED }
+
   @KafkaListener(topics = "demenziellErkrankte", groupId = "fae-team-3-service")
   public void consume(String input) throws IOException {
     log.info(String.format("#### -> Consumed message -> %s", input));
@@ -37,11 +39,19 @@ public class DemenziellErkrankterConsumer {
     DemenziellErkrankterEvent demenziellErkrankterEvent = objectMapper
         .readValue(input, DemenziellErkrankterEvent.class);
 
-    DemenziellErkrankterDto demenziellErkrankterDto = demenziellErkrankterEvent.getPayload();
+    String eventType = demenziellErkrankterEvent.getType().toUpperCase();
 
-    DemenziellErkrankter demenziellErkrankter = dtoMapper
-        .convertToDemenziellErkrankterEntity(demenziellErkrankterDto);
+    if (eventType.equals(EventType.CREATED.toString()) || eventType.equals(EventType.UPDATED.toString())) {
+      DemenziellErkrankterDto demenziellErkrankterDto = demenziellErkrankterEvent.getPayload();
 
-    demenziellErkrankterRepository.save(demenziellErkrankter);
+      DemenziellErkrankter demenziellErkrankter = dtoMapper
+          .convertToDemenziellErkrankterEntity(demenziellErkrankterDto);
+
+      demenziellErkrankterRepository.save(demenziellErkrankter);
+    }
+
+    if (eventType.equals(EventType.DELETED.toString())) {
+      demenziellErkrankterRepository.deleteById(demenziellErkrankterEvent.getKey());
+    }
   }
 }

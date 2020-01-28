@@ -15,16 +15,16 @@ import lombok.Setter;
 public class DemenziellErkrankterEvent {
 
   @NonNull
-  public String id;
+  private String id;
   @NonNull
-  public String key;
+  private String key;
   @NonNull
-  public Long version;
+  private Long version;
   @NonNull
-  public LocalDateTime timestamp;
+  private LocalDateTime timestamp;
   @NonNull
-  public String type;
+  private String type;
   @NonNull
-  public DemenziellErkrankterDto payload;
+  private DemenziellErkrankterDto payload;
 
 }
