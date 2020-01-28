@@ -23,7 +23,6 @@ import lombok.ToString;
 @ToString(callSuper = true)
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode
 public class Antwort extends AbstractEntity {
 
   @Enumerated(EnumType.STRING)

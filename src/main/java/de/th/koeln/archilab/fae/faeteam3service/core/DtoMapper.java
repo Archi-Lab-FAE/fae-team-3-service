@@ -26,7 +26,7 @@ public interface DtoMapper {
 
   // Ausnahmesituation
   @Mapping(source = "text", target = "nachrichtText")
-  Ausnahmesituation converToAusnahmesituationEntity(AusnahmesituationDto ausnahmesituationDto);
+  Ausnahmesituation convertToAusnahmesituationEntity(AusnahmesituationDto ausnahmesituationDto);
 
   @Mapping(source = "nachrichtText", target = "text")
   AusnahmesituationDto convertToAusnahmesituationDto(Ausnahmesituation ausnahmesituation);

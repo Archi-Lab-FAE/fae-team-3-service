@@ -13,6 +13,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.FetchType;
@@ -20,12 +21,16 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.Valid;
 
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @EntityListeners(EventPublishingEntityListener.class)
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
-@Data
+@Getter
+@Setter
 public class Ausnahmesituation extends AbstractEntity {
 
   @OneToOne
@@ -47,6 +52,9 @@ public class Ausnahmesituation extends AbstractEntity {
   @Setter
   @Getter
   private Boolean hilfeUnterwegs = false;
+
+  @Embedded
+  private Position position;
 
   @Override
   @JsonProperty("ausnahmesituationId")

@@ -25,5 +25,5 @@ public class AusnahmesituationDto {
   private String text;
   private Set<NachrichtDto> nachrichten = new HashSet<>();
   private boolean hilfeUnterwegs = false;
-
+  private PositionDto position;
 }

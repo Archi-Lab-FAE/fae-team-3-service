@@ -3,7 +3,6 @@ package de.th.koeln.archilab.fae.faeteam3service.ausnahmesituation;
 import de.th.koeln.archilab.fae.faeteam3service.ausnahmesituation.persistance.Ausnahmesituation;
 import de.th.koeln.archilab.fae.faeteam3service.core.DtoMapper;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -46,12 +45,21 @@ public class AusnahmesituationController {
               mediaType = MediaType.APPLICATION_JSON_VALUE,
               schema = @Schema(hidden = true),
               examples = {
-                  @ExampleObject(name = "Ausnahmesituation erstellen",
-                      value = "{\n \"positionssenderId\" : \"0a1ad64b-48ff-44e3-8260-9b584e875ac1\", \n" +
-                          "\"text\" : \"Hilde ben\\u00F6tigt dringend deine Hilfe!\"\n}",
-                      description = "Um eine Ausnahmesituation erstellen zu können, wird die ID " +
-                          "eines Positionssenders benötigt, sowie der Text den die zu übermittelnde" +
-                          " Nachricht enthalten soll.")
+                  @ExampleObject(name = "Ohne Position",
+                      value = "{\n \"positionssenderId\" : "
+                          + "\"0a1ad64b-48ff-44e3-8260-9b584e875ac1\", \n"
+                          + "\"text\" : \"Hilde ben\\u00F6tigt dringend deine Hilfe!\"\n}",
+                      description = "Um eine Ausnahmesituation erstellen zu können, wird die ID "
+                          + "eines Positionssenders benötigt, sowie der Text den die zu"
+                          + " übermittelnde Nachricht enthalten soll."),
+                  @ExampleObject(name = "Mit Position",
+                      value = "{\n\"positionssenderId\" : \"2a300cae-2b24-4e3a-b92b-cc61d905d831\","
+                          + "\n\"text\" : \"Hilde ben\\u00F6tigt dringend deine Hilfe!\","
+                          + "\n\"position\" : "
+                          + "{\n\"laengengrad\" : 51.023630,\n\"breitengrad\" : 7.563658\n}\n}",
+                      description = "Um eine Ausnahmesituation mit Position erstellen zu können,"
+                          + " wird die ID eines Positionssenders, der Nachrichten Text, "
+                          + "sowie der Breiten- und Längengrad der Position benötigt.")
               }
           )
       )
@@ -63,7 +71,7 @@ public class AusnahmesituationController {
       @Valid @RequestBody AusnahmesituationDto ausnahmesituationDto) {
 
     Ausnahmesituation ausnahmesituation = dtoMapper
-        .converToAusnahmesituationEntity(ausnahmesituationDto);
+        .convertToAusnahmesituationEntity(ausnahmesituationDto);
 
     ausnahmesituation = ausnahmesituationService
         .saveAusnahmesituationAndSendMessage(ausnahmesituation);
