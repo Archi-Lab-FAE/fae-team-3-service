@@ -15,11 +15,13 @@ public class EventPublishingEntityListener {
 
   @PrePersist
   void onPersist(AbstractEntity entity) {
+    entity.incrementVersion();
     publishEvent(entity, "created");
   }
 
   @PreUpdate
   public void onUpdate(AbstractEntity entity) {
+    entity.incrementVersion();
     publishEvent(entity, "updated");
   }
 

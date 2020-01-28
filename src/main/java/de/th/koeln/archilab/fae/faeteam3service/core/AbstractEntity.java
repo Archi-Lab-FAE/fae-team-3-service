@@ -21,6 +21,9 @@ public abstract class AbstractEntity {
   private String entityId;
   private ZonedDateTime created;
 
+  @JsonIgnore
+  private long version = -1;
+
   public AbstractEntity() {
     this.entityId = UUID.randomUUID().toString();
     this.created = ZonedDateTime.now(ZoneOffset.UTC);
@@ -28,6 +31,14 @@ public abstract class AbstractEntity {
 
   public String getEntityId() {
     return entityId;
+  }
+
+  public long getVersion(){
+    return version;
+  }
+
+  public void incrementVersion(){
+    this.version = getVersion() + 1;
   }
 
   @JsonIgnore
