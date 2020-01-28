@@ -30,10 +30,10 @@ public class AntwortController {
     Antwort antwort = antwortMapper.convertToEntity(antwortDto);
     antwort = antwortService.saveAntwortAndCheckAntwortTyp(nachrichtId, antwort);
 
-    if(antwort != null){
-      return antwortMapper.convertToDto(antwort);
+    if(antwort == null){
+      throw new AntwortNotAllowedException();
     }
 
-    throw new AntwortNotAllowedException();
+    return antwortMapper.convertToDto(antwort);
   }
 }

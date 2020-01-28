@@ -29,21 +29,21 @@ public class AntwortService {
   public Antwort saveAntwortAndCheckAntwortTyp(final String nachrichtId, final Antwort antwort) {
     log.info("Erstelle Antwort: " + antwort.toString());
 
-    Optional<Nachricht> nachrichtOp = nachrichtRepository.findById(nachrichtId);
+    Optional<Nachricht> optionaleNachricht = nachrichtRepository.findById(nachrichtId);
 
     //Dieser Fall sollte niemals passieren!
-    if(!nachrichtOp.isPresent()){
+    if(!optionaleNachricht.isPresent()){
         return null;
     }
 
     //Wenn die Ausnahmesituation bearbeitet wird, ignoriere diese Antwort
-    if(nachrichtOp.get().getAusnahmesituation().getHilfeUnterwegs()){
+    if(optionaleNachricht.get().getAusnahmesituation().getHilfeUnterwegs()){
         return null;
     }
 
     //Wenn nicht speicher sie und fülle den Rest
     Antwort antw = antwortRepository.save(antwort);
-    Nachricht nachricht = nachrichtOp.get();
+    Nachricht nachricht = optionaleNachricht.get();
     nachricht.setAntwort(antw);
 
     if (antwort.getAntwortTyp() == AntwortTyp.KANN_HELFEN) {
