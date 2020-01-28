@@ -51,7 +51,8 @@ public class Ausnahmesituation extends AbstractEntity {
   private Set<Nachricht> nachrichten = new HashSet<>();
 
   @Setter
-  private Boolean istAbgeschlossen = false;
+  @Getter
+  private Boolean hilfeUnterwegs = false;
 
   @Override
   @JsonProperty("ausnahmesituationId")

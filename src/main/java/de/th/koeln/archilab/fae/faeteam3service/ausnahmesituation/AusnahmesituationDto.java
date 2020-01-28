@@ -26,6 +26,6 @@ public class AusnahmesituationDto {
   private PositionssenderDto positionssender;
   private String text;
   private Set<NachrichtDto> nachrichten = new HashSet<>();
-  private boolean istAbgeschlossen = false;
+  private boolean hilfeUnterwegs = false;
 
 }
