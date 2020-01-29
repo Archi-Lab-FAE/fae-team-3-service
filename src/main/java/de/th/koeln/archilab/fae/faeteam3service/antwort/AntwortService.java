@@ -19,14 +19,21 @@ import org.springframework.stereotype.Service;
 @Service
 public class AntwortService {
 
-  @Autowired
   private AntwortRepository antwortRepository;
-  @Autowired
   private NachrichtRepository nachrichtRepository;
-  @Autowired
   private AusnahmesituationRepository ausnahmesituationRepository;
-  @Autowired
   private NachrichtenService nachrichtenService;
+
+  @Autowired
+  public AntwortService(AntwortRepository antwortRepository,
+                        NachrichtRepository nachrichtRepository,
+                        AusnahmesituationRepository ausnahmesituationRepository,
+                        NachrichtenService nachrichtenService) {
+    this.antwortRepository = antwortRepository;
+    this.nachrichtRepository = nachrichtRepository;
+    this.ausnahmesituationRepository = ausnahmesituationRepository;
+    this.nachrichtenService = nachrichtenService;
+  }
 
   public Antwort saveAntwortAndCheckAntwortTyp(final String nachrichtId, final Antwort antwort) {
     log.info("Erstelle Antwort: " + antwort.toString());

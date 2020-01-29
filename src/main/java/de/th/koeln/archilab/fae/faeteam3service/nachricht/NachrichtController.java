@@ -22,8 +22,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class NachrichtController {
 
+  private NachrichtenService nachrichtenService;
+
   @Autowired
-  NachrichtenService nachrichtenService;
+  public NachrichtController(NachrichtenService nachrichtenService) {
+    this.nachrichtenService = nachrichtenService;
+  }
 
   private final DtoMapper dtoMapper = Mappers.getMapper(DtoMapper.class);
 

@@ -29,6 +29,10 @@ public abstract class AbstractEntity {
     this.created = ZonedDateTime.now(ZoneOffset.UTC);
   }
 
+  public AbstractEntity(String entityId) {
+    this.entityId = entityId;
+  }
+
   public String getEntityId() {
     return entityId;
   }

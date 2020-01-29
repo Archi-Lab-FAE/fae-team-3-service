@@ -23,8 +23,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class DemenziellErkrankterController {
 
-  @Autowired
   private DemenziellErkrankterRepository demenziellErkrankterRepository;
+
+  @Autowired
+  public DemenziellErkrankterController(DemenziellErkrankterRepository demenziellErkrankterRepository) {
+    this.demenziellErkrankterRepository = demenziellErkrankterRepository;
+  }
 
   @Operation(hidden = true)
   @GetMapping("/demenziellerkrankter")

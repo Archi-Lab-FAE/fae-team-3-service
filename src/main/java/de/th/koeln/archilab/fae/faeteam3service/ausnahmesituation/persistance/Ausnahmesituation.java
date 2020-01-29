@@ -21,10 +21,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.Valid;
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @EntityListeners(EventPublishingEntityListener.class)
@@ -55,6 +52,10 @@ public class Ausnahmesituation extends AbstractEntity {
 
   @Embedded
   private Position position;
+
+  public Ausnahmesituation(String entityId) {
+    super(entityId);
+  }
 
   @Override
   @JsonProperty("ausnahmesituationId")

@@ -7,6 +7,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.java.Log;
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,9 +20,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class AntwortController {
 
   private final DtoMapper dtoMapper = Mappers.getMapper(DtoMapper.class);
+  private AntwortService antwortService;
 
   @Autowired
-  AntwortService antwortService;
+  public AntwortController(AntwortService antwortService) {
+    this.antwortService = antwortService;
+  }
 
   @Operation(summary = "Antwort für eine Nachricht erstellen", description = "", tags = {"Antwort"})
   @PostMapping(value = "/nachricht/{nachrichtId}/antwort",

@@ -22,14 +22,22 @@ import org.springframework.stereotype.Service;
 @Service
 public class NachrichtenService {
 
+  private DemenziellErkrankterRepository demenziellErkrankterRepository;
+  private NachrichtRepository nachrichtRepository;
+  private TimeoutService timeoutService;
+  private AusnahmesituationRepository ausnahmesituationRepository;
+
   @Autowired
-  DemenziellErkrankterRepository demenziellErkrankterRepository;
-  @Autowired
-  NachrichtRepository nachrichtRepository;
-  @Autowired
-  TimeoutService timeoutService;
-  @Autowired
-  AusnahmesituationRepository ausnahmesituationRepository;
+  public NachrichtenService(DemenziellErkrankterRepository demenziellErkrankterRepository,
+                            NachrichtRepository nachrichtRepository,
+                            TimeoutService timeoutService,
+                            AusnahmesituationRepository ausnahmesituationRepository) {
+    this.demenziellErkrankterRepository = demenziellErkrankterRepository;
+    this.nachrichtRepository = nachrichtRepository;
+    this.timeoutService = timeoutService;
+    this.ausnahmesituationRepository = ausnahmesituationRepository;
+
+  }
 
   public void sendeNachrichtToKontaktperson(Ausnahmesituation ausnahmesituation) {
     DemenziellErkrankter demenziellErkrankter = demenziellErkrankterRepository

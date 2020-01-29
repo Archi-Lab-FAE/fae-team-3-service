@@ -18,15 +18,19 @@ import org.springframework.stereotype.Service;
 @Service
 public class DemenziellErkrankterConsumer {
 
-  @Autowired
   private DemenziellErkrankterRepository demenziellErkrankterRepository;
+  private ObjectMapper objectMapper;
 
   @Autowired
-  ObjectMapper objectMapper;
+  public DemenziellErkrankterConsumer(DemenziellErkrankterRepository demenziellErkrankterRepository,
+                                      ObjectMapper objectMapper) {
+    this.demenziellErkrankterRepository = demenziellErkrankterRepository;
+    this.objectMapper = objectMapper;
+  }
 
   private final DtoMapper dtoMapper = Mappers.getMapper(DtoMapper.class);
 
-  private enum EventType { CREATED, UPDATED, DELETED }
+  private enum EventType {CREATED, UPDATED, DELETED}
 
   @KafkaListener(topics = "demenziellErkrankte", groupId = "fae-team-3-service")
   public void consume(String input) throws IOException {
