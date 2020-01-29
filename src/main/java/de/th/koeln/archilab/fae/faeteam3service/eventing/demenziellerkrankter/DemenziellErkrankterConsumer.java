@@ -36,10 +36,6 @@ public class DemenziellErkrankterConsumer {
   public void consume(String input) throws IOException {
     log.info(String.format("#### -> Consumed message -> %s", input));
 
-    input = input.substring(1, input.length() - 1)
-        .replace("\\n", "")
-        .replace("\\", "");
-
     DemenziellErkrankterEvent demenziellErkrankterEvent = objectMapper
         .readValue(input, DemenziellErkrankterEvent.class);
 

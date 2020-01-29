@@ -36,7 +36,6 @@ public class NachrichtenService {
     this.nachrichtRepository = nachrichtRepository;
     this.timeoutService = timeoutService;
     this.ausnahmesituationRepository = ausnahmesituationRepository;
-
   }
 
   public void sendeNachrichtToKontaktperson(Ausnahmesituation ausnahmesituation) {
