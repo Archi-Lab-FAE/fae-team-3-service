@@ -22,16 +22,16 @@ node {
             junit 'target/surefire-reports/*.xml'
         }
 
-        /* stage('Quality Check') {
+        stage('Quality Check') {
             sh 'mvn -B -s settings.xml checkstyle:checkstyle'
             jacoco()
             withSonarQubeEnv('SonarQube-Server') {
                 sh 'mvn -B -s settings.xml \
                     org.sonarsource.scanner.maven:sonar-maven-plugin:3.6.0.1398:sonar'
             }
-        } */
+        }
 
-        /* stage("Quality Gate") {
+        stage("Quality Gate") {
             timeout(time: 1, unit: "MINUTES") {
                 def qg = waitForQualityGate()
 
@@ -43,7 +43,7 @@ node {
                     }
                 }
             }
-        } */
+        }
 
         stage('Build Production') {
             withCredentials([usernamePassword(credentialsId: 'archilab-nexus-jenkins',
