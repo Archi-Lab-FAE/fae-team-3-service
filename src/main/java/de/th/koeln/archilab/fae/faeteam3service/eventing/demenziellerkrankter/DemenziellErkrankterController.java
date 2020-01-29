@@ -26,7 +26,8 @@ public class DemenziellErkrankterController {
   private DemenziellErkrankterRepository demenziellErkrankterRepository;
 
   @Autowired
-  public DemenziellErkrankterController(DemenziellErkrankterRepository demenziellErkrankterRepository) {
+  public DemenziellErkrankterController(
+      DemenziellErkrankterRepository demenziellErkrankterRepository) {
     this.demenziellErkrankterRepository = demenziellErkrankterRepository;
   }
 

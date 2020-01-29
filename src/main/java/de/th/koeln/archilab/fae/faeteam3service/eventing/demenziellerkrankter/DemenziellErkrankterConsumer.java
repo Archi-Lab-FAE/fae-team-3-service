@@ -30,7 +30,7 @@ public class DemenziellErkrankterConsumer {
 
   private final DtoMapper dtoMapper = Mappers.getMapper(DtoMapper.class);
 
-  private enum EventType {CREATED, UPDATED, DELETED}
+  private enum EventType { CREATED, UPDATED, DELETED }
 
   @KafkaListener(topics = "demenziellErkrankte", groupId = "fae-team-3-service")
   public void consume(String input) throws IOException {
@@ -41,7 +41,8 @@ public class DemenziellErkrankterConsumer {
 
     String eventType = demenziellErkrankterEvent.getType().toUpperCase();
 
-    if (eventType.equals(EventType.CREATED.toString()) || eventType.equals(EventType.UPDATED.toString())) {
+    if (eventType.equals(EventType.CREATED.toString())
+        || eventType.equals(EventType.UPDATED.toString())) {
       DemenziellErkrankterDto demenziellErkrankterDto = demenziellErkrankterEvent.getPayload();
 
       DemenziellErkrankter demenziellErkrankter = dtoMapper

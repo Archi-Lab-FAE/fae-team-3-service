@@ -15,11 +15,7 @@ import javax.persistence.EntityListeners;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 @Entity
 @EntityListeners(EventPublishingEntityListener.class)
@@ -44,6 +40,10 @@ public class Nachricht extends AbstractEntity {
   @OneToOne
   @Setter
   private Kontaktperson kontaktperson;
+
+  public Nachricht(String id) {
+    super(id);
+  }
 
   public Nachricht(NachrichtText nachrichtenText, Kontaktperson kontaktperson) {
     this.nachrichtText = nachrichtenText;

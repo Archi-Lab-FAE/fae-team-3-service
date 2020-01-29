@@ -59,6 +59,7 @@ public class NachrichtenService {
     } else {
       Nachricht neueNachricht = nachrichtRepository.save(
           new Nachricht(ausnahmesituation.getNachrichtText(), kontaktpersonen.get(0)));
+
       ausnahmesituation.addNachricht(neueNachricht);
       neueNachricht = nachrichtRepository.save(neueNachricht);
 
@@ -87,4 +88,3 @@ public class NachrichtenService {
   }
 
 }
-
