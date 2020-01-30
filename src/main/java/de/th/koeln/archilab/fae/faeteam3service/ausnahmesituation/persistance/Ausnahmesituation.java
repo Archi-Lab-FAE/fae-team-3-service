@@ -44,6 +44,7 @@ public class Ausnahmesituation extends AbstractEntity {
   private Boolean hilfeUnterwegs = false;
 
   @Embedded
+  @Setter
   private Position position;
 
   public Ausnahmesituation(String id) {

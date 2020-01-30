@@ -4,7 +4,9 @@ import de.th.koeln.archilab.fae.faeteam3service.antwort.AntwortDto;
 import de.th.koeln.archilab.fae.faeteam3service.antwort.persistance.Antwort;
 import de.th.koeln.archilab.fae.faeteam3service.ausnahmesituation.AusnahmesituationDto;
 import de.th.koeln.archilab.fae.faeteam3service.ausnahmesituation.AusnahmesituationPositionssenderDto;
+import de.th.koeln.archilab.fae.faeteam3service.ausnahmesituation.PositionDto;
 import de.th.koeln.archilab.fae.faeteam3service.ausnahmesituation.persistance.Ausnahmesituation;
+import de.th.koeln.archilab.fae.faeteam3service.ausnahmesituation.persistance.Position;
 import de.th.koeln.archilab.fae.faeteam3service.eventing.demenziellerkrankter.DemenziellErkrankterDto;
 import de.th.koeln.archilab.fae.faeteam3service.eventing.demenziellerkrankter.persistance.DemenziellErkrankter;
 import de.th.koeln.archilab.fae.faeteam3service.eventing.kontaktperson.KontaktpersonDto;
@@ -33,6 +35,11 @@ public interface DtoMapper {
 
   List<AusnahmesituationDto> convertToAusnahmesituationDtoList(
       List<Ausnahmesituation> ausnahmesituationen);
+
+  // Position
+  Position convertToPositionEntity(PositionDto positionDto);
+
+  PositionDto convertToPositionDto(Position position);
 
   // Kontaktperson
   Kontaktperson convertToKontaktpersonEntity(KontaktpersonDto kontaktpersonDto);

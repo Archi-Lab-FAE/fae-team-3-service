@@ -14,7 +14,6 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -92,7 +91,6 @@ public class NachrichtenServiceTest {
     ausnahmesituation.setPositionssender(positionssender);
     ausnahmesituation.setHilfeUnterwegs(false);
     ausnahmesituation.setNachrichtText(new NachrichtText(NACHRICHT_TEXT));
-    ausnahmesituation.setNachrichten(new HashSet<>());
 
     return ausnahmesituation;
   }

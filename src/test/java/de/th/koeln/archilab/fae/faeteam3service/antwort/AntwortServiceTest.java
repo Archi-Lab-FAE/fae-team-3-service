@@ -26,78 +26,82 @@ import static org.mockito.Mockito.when;
 
 public class AntwortServiceTest {
 
-    private AntwortService mockAntwortService;
-    private AntwortRepository mockAntwortRepository;
-    private NachrichtRepository mockNachrichtenRepository;
-    private AusnahmesituationRepository mockAusnahmesituationRepository;
-    private NachrichtenService mockNachrichtenService;
+  private AntwortService mockAntwortService;
+  private AntwortRepository mockAntwortRepository;
+  private NachrichtRepository mockNachrichtenRepository;
+  private AusnahmesituationRepository mockAusnahmesituationRepository;
+  private NachrichtenService mockNachrichtenService;
 
-    private Antwort kannHelfenAntwort;
-    private Antwort kannNichtHelfenAntwort;
-    private Nachricht nachrichtKannHelfen;
-    private Nachricht nachrichtKannNichtHelfen;
-    private Ausnahmesituation ausnahmesituation;
+  private Antwort kannHelfenAntwort;
+  private Antwort kannNichtHelfenAntwort;
+  private Nachricht nachrichtKannHelfen;
+  private Nachricht nachrichtKannNichtHelfen;
+  private Ausnahmesituation ausnahmesituation;
 
-    @Before
-    public void setUp() {
-        mockAntwortRepository = Mockito.mock(AntwortRepository.class);
-        mockNachrichtenRepository = Mockito.mock(NachrichtRepository.class);
-        mockAusnahmesituationRepository = Mockito.mock(AusnahmesituationRepository.class);
-        mockNachrichtenService = Mockito.mock(NachrichtenService.class);
+  @Before
+  public void setUp() {
+    mockAntwortRepository = Mockito.mock(AntwortRepository.class);
+    mockNachrichtenRepository = Mockito.mock(NachrichtRepository.class);
+    mockAusnahmesituationRepository = Mockito.mock(AusnahmesituationRepository.class);
+    mockNachrichtenService = Mockito.mock(NachrichtenService.class);
 
-        ausnahmesituation = new Ausnahmesituation("1");
-        ausnahmesituation.setHilfeUnterwegs(false);
-        Nachricht nachrichtInAusnahmesituation = new Nachricht("1");
-        nachrichtInAusnahmesituation.setNachrichtText(new NachrichtText("Hilfe"));
-        Set<Nachricht> nachrichtenInAusnahmesituation = new HashSet<>();
-        nachrichtenInAusnahmesituation.add(nachrichtInAusnahmesituation);
-        ausnahmesituation.setNachrichten(nachrichtenInAusnahmesituation);
+    ausnahmesituation = new Ausnahmesituation("1");
+    ausnahmesituation.setHilfeUnterwegs(false);
+    Nachricht nachrichtInAusnahmesituation = new Nachricht("1");
+    nachrichtInAusnahmesituation.setNachrichtText(new NachrichtText("Hilfe"));
+    Set<Nachricht> nachrichtenInAusnahmesituation = new HashSet<>();
+    nachrichtenInAusnahmesituation.add(nachrichtInAusnahmesituation);
+    ausnahmesituation.setNachrichten(nachrichtenInAusnahmesituation);
 
-        nachrichtKannHelfen = new Nachricht("1");
-        nachrichtKannHelfen.setNachrichtText(new NachrichtText("Hilfe"));
-        nachrichtKannHelfen.setAntwort(kannHelfenAntwort);
-        nachrichtKannHelfen.setAusnahmesituation(ausnahmesituation);
+    nachrichtKannHelfen = new Nachricht("1");
+    nachrichtKannHelfen.setNachrichtText(new NachrichtText("Hilfe"));
+    nachrichtKannHelfen.setAntwort(kannHelfenAntwort);
+    nachrichtKannHelfen.setAusnahmesituation(ausnahmesituation);
 
-        nachrichtKannNichtHelfen = new Nachricht("1");
-        nachrichtKannNichtHelfen.setNachrichtText(new NachrichtText("Hilfe"));
-        nachrichtKannNichtHelfen.setAntwort(kannHelfenAntwort);
-        nachrichtKannNichtHelfen.setAusnahmesituation(ausnahmesituation);
+    nachrichtKannNichtHelfen = new Nachricht("1");
+    nachrichtKannNichtHelfen.setNachrichtText(new NachrichtText("Hilfe"));
+    nachrichtKannNichtHelfen.setAntwort(kannHelfenAntwort);
+    nachrichtKannNichtHelfen.setAusnahmesituation(ausnahmesituation);
 
-        Optional<Nachricht> optionalNachricht = Optional.ofNullable(nachrichtKannHelfen);
+    Optional<Nachricht> optionalNachricht = Optional.ofNullable(nachrichtKannHelfen);
 
-        when(mockNachrichtenRepository.findById(any(String.class))).thenReturn(optionalNachricht);
+    when(mockNachrichtenRepository.findById(any(String.class))).thenReturn(optionalNachricht);
 
-        kannHelfenAntwort = new Antwort(AntwortTyp.KANN_HELFEN);
-        kannNichtHelfenAntwort = new Antwort(AntwortTyp.KANN_NICHT_HELFEN);
+    kannHelfenAntwort = new Antwort(AntwortTyp.KANN_HELFEN);
+    kannNichtHelfenAntwort = new Antwort(AntwortTyp.KANN_NICHT_HELFEN);
 
-        when(mockAntwortRepository.save(any(Antwort.class))).thenReturn(kannHelfenAntwort);
+    when(mockAntwortRepository.save(any(Antwort.class))).thenReturn(kannHelfenAntwort);
 
-        Optional<Ausnahmesituation> optionalAusnahmesituation = Optional.ofNullable(ausnahmesituation);
+    Optional<Ausnahmesituation> optionalAusnahmesituation = Optional.ofNullable(ausnahmesituation);
 
-        when(mockAusnahmesituationRepository.findById(any(String.class))).thenReturn(optionalAusnahmesituation);
+    when(mockAusnahmesituationRepository.findById(any(String.class))).thenReturn(optionalAusnahmesituation);
 
-        mockAntwortService = new AntwortService(mockAntwortRepository,
-                mockNachrichtenRepository,
-                mockAusnahmesituationRepository,
-                mockNachrichtenService);
-    }
+    mockAntwortService = new AntwortService(mockAntwortRepository,
+        mockNachrichtenRepository,
+        mockAusnahmesituationRepository,
+        mockNachrichtenService);
+  }
 
-    @Test
-    public void ifAntwortIsKannHelfen_thenSetHilfeUnterwegsInAusnahmesituationToTrue() {
-        mockAntwortService.saveAntwortAndCheckAntwortTyp("1", kannHelfenAntwort);
+  @Test
+  public void ifAntwortIsKannHelfen_thenSetHilfeUnterwegsInAusnahmesituationToTrue() {
+    mockAntwortService.saveAntwortAndCheckAntwortTyp("1", kannHelfenAntwort);
 
-        assertThat(ausnahmesituation.getHilfeUnterwegs().booleanValue(), equalTo(true));
-    }
+    assertThat(ausnahmesituation.getHilfeUnterwegs().booleanValue(), equalTo(true));
+  }
 
-    @Test
-    public void ifAntwortIsKannNichtHelfen_thenSendMessageToNextKontaktperson() {
-        mockAntwortService.saveAntwortAndCheckAntwortTyp("1", kannNichtHelfenAntwort);
+  @Test
+  public void ifAntwortIsKannNichtHelfen_thenSendMessageToNextKontaktperson() {
 
-        doAnswer(invocation -> {
-            assertThat(ausnahmesituation.getNachrichten().size(), equalTo(2));
-            return null;
-        }).when(mockNachrichtenService).sendeNachrichtToKontaktperson(any(Ausnahmesituation.class));
+    doAnswer(invocation -> {
+      Nachricht neueNachricht = new Nachricht();
+      neueNachricht.setNachrichtText(new NachrichtText("Hilf mir bitte"));
+      ausnahmesituation.addNachricht(neueNachricht);
+      return null;
+    }).when(mockNachrichtenService).sendeNachrichtToKontaktperson(any(Ausnahmesituation.class));
 
-    }
+    mockAntwortService.saveAntwortAndCheckAntwortTyp("1", kannNichtHelfenAntwort);
+
+    assertThat(ausnahmesituation.getNachrichten().size(), equalTo(2));
+  }
 
 }
