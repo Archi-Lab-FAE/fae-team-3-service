@@ -6,13 +6,14 @@ import de.th.koeln.archilab.fae.faeteam3service.eventing.positionssender.persist
 import de.th.koeln.archilab.fae.faeteam3service.nachricht.persistance.Nachricht;
 import de.th.koeln.archilab.fae.faeteam3service.nachricht.persistance.NachrichtText;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class AusnahmesituationBuilder {
     private String entityId;
     private Positionssender positionssender;
     private NachrichtText text = new NachrichtText("Foo bar");
-    private Set<Nachricht> nachrichten;
+    private Set<Nachricht> nachrichten = new HashSet<>();
     private boolean hilfeUnterwegs;
     private Position position;
 
