@@ -32,7 +32,7 @@ public class DemenziellErkrankterConsumer {
 
   private enum EventType { CREATED, UPDATED, DELETED }
 
-  @KafkaListener(topics = "demenziellErkrankte", groupId = "fae-team-3-service")
+  @KafkaListener(topics = "demenziellErkrankte", groupId = "fae-team-3-service", autoStartup = "${enabled}")
   public void consume(String input) throws IOException {
     log.info(String.format("#### -> Consumed message -> %s", input));
 
