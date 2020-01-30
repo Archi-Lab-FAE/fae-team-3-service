@@ -8,26 +8,18 @@ import de.th.koeln.archilab.fae.faeteam3service.eventing.EventPublishingEntityLi
 import de.th.koeln.archilab.fae.faeteam3service.eventing.positionssender.persistance.Positionssender;
 import de.th.koeln.archilab.fae.faeteam3service.nachricht.persistance.Nachricht;
 import de.th.koeln.archilab.fae.faeteam3service.nachricht.persistance.NachrichtText;
+import lombok.*;
 
+import javax.persistence.*;
+import javax.validation.Valid;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.validation.Valid;
-
-import lombok.*;
-
+@Data
 @Entity
+@NoArgsConstructor
+@EqualsAndHashCode(callSuper = true)
 @EntityListeners(EventPublishingEntityListener.class)
-@NoArgsConstructor(access = AccessLevel.PUBLIC)
-@Getter
-@Setter
 public class Ausnahmesituation extends AbstractEntity {
 
   @OneToOne

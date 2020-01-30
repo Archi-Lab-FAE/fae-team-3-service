@@ -8,21 +8,15 @@ import de.th.koeln.archilab.fae.faeteam3service.ausnahmesituation.persistance.Au
 import de.th.koeln.archilab.fae.faeteam3service.core.AbstractEntity;
 import de.th.koeln.archilab.fae.faeteam3service.eventing.EventPublishingEntityListener;
 import de.th.koeln.archilab.fae.faeteam3service.eventing.kontaktperson.persistance.Kontaktperson;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-
 import lombok.*;
 
+import javax.persistence.*;
+
+@Data
 @Entity
-@EntityListeners(EventPublishingEntityListener.class)
 @AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
+@EqualsAndHashCode(callSuper = true)
+@EntityListeners(EventPublishingEntityListener.class)
 public class Nachricht extends AbstractEntity {
 
   @JsonUnwrapped
