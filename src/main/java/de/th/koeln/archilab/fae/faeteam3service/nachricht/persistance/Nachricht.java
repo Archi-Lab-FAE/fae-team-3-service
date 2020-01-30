@@ -12,14 +12,15 @@ import lombok.*;
 
 import javax.persistence.*;
 
-@Data
 @Entity
+@EntityListeners(EventPublishingEntityListener.class)
+@Getter
+@ToString(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(callSuper = true)
-@EntityListeners(EventPublishingEntityListener.class)
 public class Nachricht extends AbstractEntity {
 
+  @Setter
   @JsonUnwrapped
   private NachrichtText nachrichtText;
 
@@ -29,6 +30,7 @@ public class Nachricht extends AbstractEntity {
   @ToString.Exclude
   private Ausnahmesituation ausnahmesituation;
 
+  @Setter
   @OneToOne(cascade = CascadeType.ALL)
   private Antwort antwort;
 

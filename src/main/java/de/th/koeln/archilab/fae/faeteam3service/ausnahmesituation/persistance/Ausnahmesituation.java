@@ -15,11 +15,12 @@ import javax.validation.Valid;
 import java.util.HashSet;
 import java.util.Set;
 
-@Data
 @Entity
-@NoArgsConstructor
-@EqualsAndHashCode(callSuper = true)
 @EntityListeners(EventPublishingEntityListener.class)
+@Getter
+@ToString(callSuper = true)
+@AllArgsConstructor
+@NoArgsConstructor
 public class Ausnahmesituation extends AbstractEntity {
 
   @OneToOne
@@ -28,18 +29,18 @@ public class Ausnahmesituation extends AbstractEntity {
   @JsonUnwrapped
   private Positionssender positionssender;
 
-  @Getter
+  @Setter
   @JsonUnwrapped
   private NachrichtText nachrichtText;
 
+  @Setter
   @OneToMany(mappedBy = "ausnahmesituation",
-      cascade = CascadeType.ALL,
-      fetch = FetchType.EAGER)
+          cascade = CascadeType.ALL,
+          fetch = FetchType.EAGER)
   @JsonManagedReference
   private Set<Nachricht> nachrichten = new HashSet<>();
 
   @Setter
-  @Getter
   private Boolean hilfeUnterwegs = false;
 
   @Embedded
