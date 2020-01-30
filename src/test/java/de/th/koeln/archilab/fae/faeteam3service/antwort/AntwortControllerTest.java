@@ -6,7 +6,6 @@ import de.th.koeln.archilab.fae.faeteam3service.antwort.persistance.AntwortTyp;
 import de.th.koeln.archilab.fae.faeteam3service.ausnahmesituation.persistance.Ausnahmesituation;
 import de.th.koeln.archilab.fae.faeteam3service.ausnahmesituation.persistance.AusnahmesituationRepository;
 import de.th.koeln.archilab.fae.faeteam3service.ausnahmesituation.persistance.Position;
-import de.th.koeln.archilab.fae.faeteam3service.eventing.ausnahmesituation.AusnahmesituationConsumer;
 import de.th.koeln.archilab.fae.faeteam3service.eventing.demenziellerkrankter.persistance.DemenziellErkrankter;
 import de.th.koeln.archilab.fae.faeteam3service.eventing.demenziellerkrankter.persistance.DemenziellErkrankterRepository;
 import de.th.koeln.archilab.fae.faeteam3service.eventing.kontaktperson.persistance.Kontaktperson;
@@ -71,8 +70,6 @@ public class AntwortControllerTest {
 
     @Before
     public void setUp(){
-        AusnahmesituationConsumer ausnahmesituationConsumer = new AusnahmesituationConsumer();
-
         this.kontaktpersonen = new ArrayList<>();
         this.kontaktpersonen.add(new KontaktpersonBuilder().build());
 
