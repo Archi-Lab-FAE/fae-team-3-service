@@ -1,10 +1,5 @@
 package de.th.koeln.archilab.fae.faeteam3service.nachricht.service;
 
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
-
-import static org.hamcrest.CoreMatchers.equalTo;
-
 import de.th.koeln.archilab.fae.faeteam3service.ausnahmesituation.persistance.Ausnahmesituation;
 import de.th.koeln.archilab.fae.faeteam3service.ausnahmesituation.persistance.AusnahmesituationRepository;
 import de.th.koeln.archilab.fae.faeteam3service.eventing.demenziellerkrankter.persistance.DemenziellErkrankter;
@@ -21,14 +16,18 @@ import org.mockito.Mockito;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.junit.Assert.assertThat;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
 
 public class NachrichtenServiceTest {
   private final String POSITIONSSENDER_ID = "1";
   private final String NACHRICHT_TEXT = "HILFE";
 
-  private NachrichtenService nachrichtenService;
+  private NachrichtenService mockNachrichtenService;
   private DemenziellErkrankterRepository mockDemenziellErkrankterRepository;
   private NachrichtRepository mockNachrichtRepository;
   private Positionssender positionssender;
@@ -70,20 +69,22 @@ public class NachrichtenServiceTest {
 
     when(mockNachrichtRepository.save(any(Nachricht.class))).thenReturn(nachricht);
 
-    nachrichtenService = new NachrichtenService(mockDemenziellErkrankterRepository,
-        mockNachrichtRepository,
-        Mockito.mock(TimeoutService.class),
-        Mockito.mock(AusnahmesituationRepository.class));
+    mockNachrichtenService = new NachrichtenService(mockDemenziellErkrankterRepository,
+            mockNachrichtRepository,
+            Mockito.mock(TimeoutService.class),
+            Mockito.mock(AusnahmesituationRepository.class));
   }
 
   @Test
   public void sendeNachrichtToKontaktpersonTest() {
-    nachrichtenService.sendeNachrichtToKontaktperson(ausnahmesituation);
-
-    for (Nachricht nachrichtInAusnahmesituation : ausnahmesituation.getNachrichten()) {
-      assertThat(nachrichtInAusnahmesituation.getNachrichtText(), equalTo(nachricht.getNachrichtText()));
-      break;
+    mockNachrichtenService.sendeNachrichtToKontaktperson(ausnahmesituation);
+    Set<Nachricht> nachrichtInAusnahmesituation = ausnahmesituation.getNachrichten();
+    Nachricht nachricht = null;
+    if (!nachrichtInAusnahmesituation.isEmpty()) {
+      nachricht = nachrichtInAusnahmesituation.iterator().next();
     }
+
+    assertThat(nachricht.getNachrichtText(), equalTo(nachricht.getNachrichtText()));
   }
 
   private Ausnahmesituation createAusnahmesituationOhneNachrichten(final String id) {
