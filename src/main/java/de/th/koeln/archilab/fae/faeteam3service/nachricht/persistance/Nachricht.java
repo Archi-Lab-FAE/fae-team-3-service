@@ -1,7 +1,6 @@
 package de.th.koeln.archilab.fae.faeteam3service.nachricht.persistance;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import de.th.koeln.archilab.fae.faeteam3service.antwort.persistance.Antwort;
 import de.th.koeln.archilab.fae.faeteam3service.ausnahmesituation.persistance.Ausnahmesituation;
@@ -49,21 +48,13 @@ public class Nachricht extends AbstractEntity {
   }
 
   @Override
-  @JsonProperty("nachrichtId")
-  public String getEntityId() {
-    return super.getEntityId();
-  }
-
-  @Override
   public String getEventClass() {
     return "nachricht";
   }
 
   @Override
   public boolean equals(Object o) {
-    if (!super.equals(o)) {
-      return false;
-    }
+    if (!super.equals(o)) return false;
     Nachricht nachricht = (Nachricht) o;
     return nachrichtText.equals(nachricht.nachrichtText);
   }

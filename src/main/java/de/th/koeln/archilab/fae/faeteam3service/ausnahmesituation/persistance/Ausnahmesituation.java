@@ -1,7 +1,6 @@
 package de.th.koeln.archilab.fae.faeteam3service.ausnahmesituation.persistance;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import de.th.koeln.archilab.fae.faeteam3service.core.AbstractEntity;
 import de.th.koeln.archilab.fae.faeteam3service.eventing.EventPublishingEntityListener;
@@ -53,12 +52,6 @@ public class Ausnahmesituation extends AbstractEntity {
   }
 
   @Override
-  @JsonProperty("ausnahmesituationId")
-  public String getEntityId() {
-    return super.getEntityId();
-  }
-
-  @Override
   public String getEventClass() {
     return "ausnahmesituation";
   }
@@ -76,9 +69,7 @@ public class Ausnahmesituation extends AbstractEntity {
 
   @Override
   public boolean equals(Object o) {
-    if (!super.equals(o)) {
-      return false;
-    }
+    if (!super.equals(o)) return false;
     Ausnahmesituation that = (Ausnahmesituation) o;
     return nachrichtText.equals(that.nachrichtText)
         && hilfeUnterwegs.equals(that.hilfeUnterwegs);

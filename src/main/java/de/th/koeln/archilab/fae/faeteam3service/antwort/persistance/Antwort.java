@@ -1,6 +1,5 @@
 package de.th.koeln.archilab.fae.faeteam3service.antwort.persistance;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import de.th.koeln.archilab.fae.faeteam3service.core.AbstractEntity;
 import de.th.koeln.archilab.fae.faeteam3service.eventing.EventPublishingEntityListener;
 import lombok.*;
@@ -24,21 +23,13 @@ public class Antwort extends AbstractEntity {
   private AntwortTyp antwortTyp;
 
   @Override
-  @JsonProperty("antwortId")
-  public String getEntityId() {
-    return super.getEntityId();
-  }
-
-  @Override
   public String getEventClass() {
     return "antwort";
   }
 
   @Override
   public boolean equals(Object o) {
-    if (!super.equals(o)) {
-      return false;
-    }
+    if (!super.equals(o)) return false;
     Antwort antwort = (Antwort) o;
     return antwortTyp == antwort.antwortTyp;
   }
