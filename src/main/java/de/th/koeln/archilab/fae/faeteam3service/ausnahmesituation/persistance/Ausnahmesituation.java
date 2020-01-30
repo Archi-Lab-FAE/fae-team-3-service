@@ -13,6 +13,7 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.Valid;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -62,11 +63,36 @@ public class Ausnahmesituation extends AbstractEntity {
     return "ausnahmesituation";
   }
 
+  /**
+   * Nachricht hinzufügen.
+   * @param nachricht Die hinzuzufügende Nachricht
+   */
   public void addNachricht(Nachricht nachricht) {
     if (!nachrichten.contains(nachricht)) {
       nachricht.setAusnahmesituation(this);
       this.nachrichten.add(nachricht);
     }
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    if (!super.equals(o)) {
+      return false;
+    }
+    Ausnahmesituation that = (Ausnahmesituation) o;
+    return nachrichtText.equals(that.nachrichtText)
+        && hilfeUnterwegs.equals(that.hilfeUnterwegs);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(super.hashCode(), nachrichtText, hilfeUnterwegs);
   }
 }
 

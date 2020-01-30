@@ -11,6 +11,7 @@ import de.th.koeln.archilab.fae.faeteam3service.eventing.kontaktperson.persistan
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @EntityListeners(EventPublishingEntityListener.class)
@@ -56,5 +57,25 @@ public class Nachricht extends AbstractEntity {
   @Override
   public String getEventClass() {
     return "nachricht";
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    if (!super.equals(o)) {
+      return false;
+    }
+    Nachricht nachricht = (Nachricht) o;
+    return nachrichtText.equals(nachricht.nachrichtText);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(super.hashCode(), nachrichtText);
   }
 }

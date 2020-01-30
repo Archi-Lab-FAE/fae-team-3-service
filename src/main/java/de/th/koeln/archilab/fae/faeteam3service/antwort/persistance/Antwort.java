@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import java.util.Objects;
 
 @Entity
 @EntityListeners(EventPublishingEntityListener.class)
@@ -31,5 +32,25 @@ public class Antwort extends AbstractEntity {
   @Override
   public String getEventClass() {
     return "antwort";
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    if (!super.equals(o)) {
+      return false;
+    }
+    Antwort antwort = (Antwort) o;
+    return antwortTyp == antwort.antwortTyp;
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(super.hashCode(), antwortTyp);
   }
 }
