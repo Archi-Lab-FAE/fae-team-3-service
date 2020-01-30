@@ -69,5 +69,9 @@ public class Ausnahmesituation extends AbstractEntity {
     }
   }
 
+  @Override
+  public boolean equals(Object o) {
+    return super.equals(o);
+  }
 }
 

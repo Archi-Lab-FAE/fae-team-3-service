@@ -57,4 +57,9 @@ public class Nachricht extends AbstractEntity {
   public String getEventClass() {
     return "nachricht";
   }
+
+  @Override
+  public boolean equals(Object o) {
+    return super.equals(o);
+  }
 }

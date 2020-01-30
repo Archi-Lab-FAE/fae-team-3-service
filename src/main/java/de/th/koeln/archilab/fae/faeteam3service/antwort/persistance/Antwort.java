@@ -33,4 +33,8 @@ public class Antwort extends AbstractEntity {
     return "antwort";
   }
 
+  @Override
+  public boolean equals(Object o) {
+    return super.equals(o);
+  }
 }
