@@ -21,6 +21,7 @@ import org.mockito.Mockito;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static org.junit.Assert.*;
 
@@ -28,7 +29,7 @@ public class NachrichtenServiceTest {
   private final String POSITIONSSENDER_ID = "1";
   private final String NACHRICHT_TEXT = "HILFE";
 
-  private NachrichtenService nachrichtenService;
+  private NachrichtenService mockNachrichtenService;
   private DemenziellErkrankterRepository mockDemenziellErkrankterRepository;
   private NachrichtRepository mockNachrichtRepository;
   private Positionssender positionssender;
@@ -70,7 +71,7 @@ public class NachrichtenServiceTest {
 
     when(mockNachrichtRepository.save(any(Nachricht.class))).thenReturn(nachricht);
 
-    nachrichtenService = new NachrichtenService(mockDemenziellErkrankterRepository,
+    mockNachrichtenService = new NachrichtenService(mockDemenziellErkrankterRepository,
         mockNachrichtRepository,
         Mockito.mock(TimeoutService.class),
         Mockito.mock(AusnahmesituationRepository.class));
@@ -78,12 +79,14 @@ public class NachrichtenServiceTest {
 
   @Test
   public void sendeNachrichtToKontaktpersonTest() {
-    nachrichtenService.sendeNachrichtToKontaktperson(ausnahmesituation);
-
-    for (Nachricht nachrichtInAusnahmesituation : ausnahmesituation.getNachrichten()) {
-      assertThat(nachrichtInAusnahmesituation.getNachrichtText(), equalTo(nachricht.getNachrichtText()));
-      break;
+    mockNachrichtenService.sendeNachrichtToKontaktperson(ausnahmesituation);
+    Set<Nachricht> nachrichtInAusnahmesituation = ausnahmesituation.getNachrichten();
+    Nachricht nachricht = null;
+    if (!nachrichtInAusnahmesituation.isEmpty()) {
+      nachricht = nachrichtInAusnahmesituation.iterator().next();
     }
+
+    assertThat(nachricht.getNachrichtText(), equalTo(nachricht.getNachrichtText()));
   }
 
   private Ausnahmesituation createAusnahmesituationOhneNachrichten(final String id) {

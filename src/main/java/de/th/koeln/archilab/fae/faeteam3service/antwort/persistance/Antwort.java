@@ -3,6 +3,7 @@ package de.th.koeln.archilab.fae.faeteam3service.antwort.persistance;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import de.th.koeln.archilab.fae.faeteam3service.core.AbstractEntity;
 import de.th.koeln.archilab.fae.faeteam3service.eventing.EventPublishingEntityListener;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -14,6 +15,7 @@ import javax.persistence.Enumerated;
 
 @Data
 @Entity
+@AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @EntityListeners(EventPublishingEntityListener.class)

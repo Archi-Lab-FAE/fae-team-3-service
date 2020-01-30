@@ -3,6 +3,7 @@ package de.th.koeln.archilab.fae.faeteam3service.antwort;
 import de.th.koeln.archilab.fae.faeteam3service.antwort.persistance.Antwort;
 import de.th.koeln.archilab.fae.faeteam3service.antwort.persistance.AntwortRepository;
 import de.th.koeln.archilab.fae.faeteam3service.antwort.persistance.AntwortTyp;
+import de.th.koeln.archilab.fae.faeteam3service.ausnahmesituation.persistance.Ausnahmesituation;
 import de.th.koeln.archilab.fae.faeteam3service.ausnahmesituation.persistance.AusnahmesituationRepository;
 import de.th.koeln.archilab.fae.faeteam3service.nachricht.persistance.Nachricht;
 import de.th.koeln.archilab.fae.faeteam3service.nachricht.persistance.NachrichtRepository;
@@ -41,13 +42,8 @@ public class AntwortService {
     Optional<Nachricht> optionaleNachricht = nachrichtRepository.findById(nachrichtId);
 
     //Dieser Fall sollte niemals passieren!
-    if (!optionaleNachricht.isPresent()) {
-      return null;
-    }
-
-    //Wenn die Ausnahmesituation bearbeitet wird, ignoriere diese Antwort
-    if (optionaleNachricht.get().getAusnahmesituation().getHilfeUnterwegs().booleanValue()) {
-      return null;
+    if (!optionaleNachricht.isPresent() || optionaleNachricht.get().getAusnahmesituation().getHilfeUnterwegs().booleanValue()) {
+        throw new AntwortNotAllowedException();
     }
 
     //Wenn nicht speicher sie und fülle den Rest
@@ -55,22 +51,17 @@ public class AntwortService {
     Nachricht nachricht = optionaleNachricht.get();
     nachricht.setAntwort(antw);
 
+    Optional<Ausnahmesituation> ausnahmesituation = ausnahmesituationRepository.findById(nachricht.getAusnahmesituation().getEntityId());
     if (antwort.getAntwortTyp() == AntwortTyp.KANN_HELFEN) {
-      nachricht.getAusnahmesituation().setHilfeUnterwegs(true);
-
-      ausnahmesituationRepository.findById(nachricht.getAusnahmesituation().getEntityId())
-          .ifPresent(ausnahmesituation -> ausnahmesituation.setHilfeUnterwegs(true));
-
-      log.info("Für Ausnahmesituation mit der ID "
-          + nachricht.getAusnahmesituation().getEntityId()
-          + " ist Hilfe unterwegs...");
+      ausnahmesituation.ifPresent( it -> it.setHilfeUnterwegs(true));
+      log.info("Für Ausnahmesituation mit der ID "+ nachricht.getAusnahmesituation().getEntityId() + " ist Hilfe unterwegs...");
     }
 
     //Nächste Kontaktperson kontaktieren
     if (antwort.getAntwortTyp() == AntwortTyp.KANN_NICHT_HELFEN) {
-      ausnahmesituationRepository.findById(nachricht.getAusnahmesituation().getEntityId())
-          .ifPresent(ausnahmesituation ->
-              nachrichtenService.sendeNachrichtToKontaktperson(ausnahmesituation));
+      ausnahmesituation.ifPresent( it -> nachrichtenService.sendeNachrichtToKontaktperson(it));
+      log.info("Für Ausnahmesituation mit der ID "+ nachricht.getAusnahmesituation().getEntityId() +
+          " wurde eine weiter Kontaktperson kontaktiert");
     }
 
     return antwortRepository.save(antw);

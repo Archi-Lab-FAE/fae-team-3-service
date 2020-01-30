@@ -45,8 +45,8 @@ public class Ausnahmesituation extends AbstractEntity {
   @Embedded
   private Position position;
 
-  public Ausnahmesituation(String entityId) {
-    super(entityId);
+  public Ausnahmesituation(String id) {
+    super(id);
   }
 
   @Override
