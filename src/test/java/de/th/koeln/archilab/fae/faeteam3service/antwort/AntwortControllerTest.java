@@ -1,7 +1,6 @@
 package de.th.koeln.archilab.fae.faeteam3service.antwort;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import de.th.koeln.archilab.fae.faeteam3service.FaeTeam3ServiceApplication;
 import de.th.koeln.archilab.fae.faeteam3service.antwort.persistance.Antwort;
 import de.th.koeln.archilab.fae.faeteam3service.antwort.persistance.AntwortTyp;
 import de.th.koeln.archilab.fae.faeteam3service.ausnahmesituation.persistance.Ausnahmesituation;
@@ -22,16 +21,12 @@ import de.th.koeln.archilab.fae.faeteam3service.utils.PositionssenderBuilder;
 import lombok.extern.java.Log;
 import org.json.JSONObject;
 import org.junit.Before;
-import org.junit.ClassRule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.kafka.test.context.EmbeddedKafka;
-import org.springframework.kafka.test.rule.KafkaEmbedded;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -43,14 +38,6 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
-/**
- * We cannot perform this type of test because the KAFKA is not available when the test is performed.
- * Server throws error on startup (endless loop)
- * All attempts at a solution have failed.
- * <p>
- * Local Setup with running Kafka works.
- */
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

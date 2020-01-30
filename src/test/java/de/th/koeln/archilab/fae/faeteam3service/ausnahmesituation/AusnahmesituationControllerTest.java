@@ -27,20 +27,11 @@ import org.springframework.test.web.servlet.MvcResult;
 
 import java.util.Collections;
 
-import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
-/**
- * We cannot perform this type of test because the KAFKA is not available when the test is performed.
- * Server throws error on startup (endless loop)
- * All attempts at a solution have failed.
- * <p>
- * Local Setup with running Kafka works.
- */
 
 @RunWith(SpringRunner.class)
 @AutoConfigureMockMvc
