@@ -94,11 +94,19 @@ public class AusnahmesituationServiceTest {
 
   @Test
   public void deleteAusnahmesituation() {
-    mockAusnahmesituationService.deleteAusnahmesituation(ausnahmesituation.getEntityId());
+    try {
+      mockAusnahmesituationService.deleteAusnahmesituation(ausnahmesituation.getEntityId());
+    } catch (Exception e) {
+      fail("Hier sollte keine Exception passieren.");
+    }
   }
 
   @Test
   public void deleteAllAusnahmesituationen() {
-    mockAusnahmesituationService.deleteAllAusnahmesituationen();
+    try {
+      mockAusnahmesituationService.deleteAllAusnahmesituationen();
+    } catch (Exception e) {
+      fail("Hier sollte keine Exception passieren.");
+    }
   }
 }
