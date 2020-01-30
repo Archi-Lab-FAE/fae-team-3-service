@@ -32,14 +32,4 @@ public class Antwort extends AbstractEntity {
   public String getEventClass() {
     return "antwort";
   }
-
-  @Override
-  public boolean equals(Object o) {
-    return super.equals(o);
-  }
-
-  @Override
-  public int hashCode() {
-    return super.hashCode();
-  }
 }
