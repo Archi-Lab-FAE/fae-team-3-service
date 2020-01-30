@@ -14,6 +14,7 @@ import javax.persistence.*;
 
 @Data
 @Entity
+@NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @EntityListeners(EventPublishingEntityListener.class)
